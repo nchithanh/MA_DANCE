@@ -239,6 +239,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .side-rail__booking:hover{opacity:.65}
 .header{right:var(--rail)}
 
+/* MOBILE BOTTOM BAR — hidden on desktop */
+.bottom-bar{display:none}
+
 /* ===== HERO SHRINK ===== */
 .hero{
   position:relative;
@@ -657,12 +660,48 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* RESPONSIVE */
 @media(max-width:960px){
+  :root{--bottom-bar:58px}
   .nav{display:none}
-  .menu-toggle{display:flex}
+  .menu-toggle{display:none!important}
+  .side-rail{display:none}
+  .header{right:0}
+  .mobile-menu__backdrop{right:0}
+  .mobile-menu__panel{
+    right:0;
+    width:min(420px,100vw);
+    bottom:var(--bottom-bar);
+    border-left:none;
+  }
+  .bottom-bar{
+    display:flex;
+    position:fixed;left:0;right:0;bottom:0;z-index:120;
+    height:var(--bottom-bar);
+    background:#000;border-top:1px solid #fff;
+    align-items:center;justify-content:center;
+    padding:0 3.5rem;
+  }
+  .bottom-bar__menu{
+    position:absolute;left:.35rem;top:50%;transform:translateY(-50%);
+    width:48px;height:48px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  }
+  .bottom-bar__menu span{
+    display:block;width:18px;height:2px;background:#fff;
+    transition:transform .3s ease;
+    transform-origin:center;
+  }
+  .bottom-bar.is-open .bottom-bar__menu span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+  .bottom-bar.is-open .bottom-bar__menu span:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
+  .bottom-bar__booking{
+    font-size:.85rem;font-weight:800;letter-spacing:.28em;
+    text-transform:uppercase;color:#fff;
+    text-align:center;
+  }
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.2rem}
   .svc-grid,.how-steps,.inst-grid,.price-grid{grid-template-columns:1fr 1fr}
   .about-stats{grid-template-columns:1fr 1fr}
   .hero{height:140vh}
+  body{padding-bottom:var(--bottom-bar)}
 }
 @media(max-width:600px){
   :root{--h:93px;--rail:44px}
