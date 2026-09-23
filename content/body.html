@@ -1,0 +1,551 @@
+<div class="page-loader" id="pageLoader" aria-busy="true" aria-live="polite">
+    <div class="page-loader__inner">
+      <img class="page-loader__logo" src="logo.png" alt="MA" width="320" height="230" />
+      <p class="page-loader__tag" aria-label="Dance Studio">
+        <span>D</span><span>A</span><span>N</span><span>C</span><span>E</span><span class="page-loader__gap" aria-hidden="true">&nbsp;</span><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span>
+      </p>
+      <div class="page-loader__bar" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="MA" />
+        <span class="logo-tag">DANCE STUDIO</span>
+      </a>
+            <nav class="nav">
+        <a href="#about" data-i18n="nav.about">Giới thiệu</a>
+        <a href="#styles" data-i18n="nav.styles">Styles</a>
+        <a href="#classes" data-i18n="nav.classes">Lớp học</a>
+        <a href="#schedule" data-i18n="nav.schedule">Lịch</a>
+        <a href="#instructors" data-i18n="nav.instructors">Giảng viên</a>
+        <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
+        <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="vi">VN</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="kr">KR</button>
+        </div>
+        <a href="#contact" class="btn-cta" data-i18n="nav.book">ĐẶT LỚP</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+        <nav>
+      <a href="#about" data-i18n="nav.about">Giới thiệu</a>
+      <a href="#styles" data-i18n="nav.styles">Styles</a>
+      <a href="#classes" data-i18n="nav.classes">Lớp học</a>
+      <a href="#schedule" data-i18n="nav.schedule">Lịch</a>
+      <a href="#instructors" data-i18n="nav.instructors">Giảng viên</a>
+      <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
+      <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+      <a href="#contact" class="btn-cta" data-i18n="nav.book">ĐẶT LỚP</a>
+    </nav>
+  </div>
+
+  <!-- HERO: shrinks on scroll -->
+  <section class="hero" id="hero">
+    <div class="hero-frame" id="heroFrame">
+      <div class="hero-media">
+        <iframe src="https://www.youtube.com/embed/_sC66dTpGMw?autoplay=1&mute=1&loop=1&playlist=_sC66dTpGMw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="MA Dance Studio" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge" data-i18n="hero.badge">K-POP DANCE STUDIO</div>
+        <h1 class="hero-title">
+          <span data-i18n="hero.line1">KHÔNG CẦN SÂN KHẤU</span>
+          <span class="hero-line2" data-i18n="hero.line2">ĐỂ BẮT ĐẦU NHẢY</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero.sub">Học choreography K-Pop hot nhất — từ zero đến stage-ready. Lớp one-day, instructor pro, vibe cực cháy.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Đặt lớp ngay</a>
+          <a href="#classes" class="btn btn-ghost" data-i18n="hero.cta2">Xem chương trình</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint"><span data-i18n="hero.scroll">SCROLL</span><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>K-POP</span><span>·</span><span>HIP-HOP</span><span>·</span><span>GIRLS HIP</span><span>·</span><span>WAACKING</span><span>·</span><span>URBAN</span><span>·</span><span>CHOREOGRAPHY</span><span>·</span><span>ONE-DAY</span><span>·</span><span>STUDIO RENTAL</span><span>·</span>
+      </div>
+      <div class="marquee-group">
+        <span>K-POP</span><span>·</span><span>HIP-HOP</span><span>·</span><span>GIRLS HIP</span><span>·</span><span>WAACKING</span><span>·</span><span>URBAN</span><span>·</span><span>CHOREOGRAPHY</span><span>·</span><span>ONE-DAY</span><span>·</span><span>STUDIO RENTAL</span><span>·</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about section-light" id="about" data-header-theme="light">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left reveal">
+          <p class="label" data-i18n="about.label">Về MA Dance</p>
+          <h2 data-i18n="about.title">Studio cho người thích nhảy thật — không cần sân khấu</h2>
+        </div>
+        <div class="about-right reveal">
+          <p data-i18n="about.p1">MA Dance Studio là không gian dạy nhảy K-Pop và street style tại TP.HCM. Chúng tôi tin rằng ai cũng có thể nhảy — chỉ cần một buổi, một track, và một cộng đồng sẵn sàng cháy cùng bạn.</p>
+          <p data-i18n="about.p2">Từ lớp Beginner one-day đến Master & Popup với guest choreographer, MA xây dựng lộ trình rõ ràng: đến — học — về nhà với full choreography.</p>
+          <div class="about-stats">
+            <div><strong>500+</strong><span data-i18n="about.s1">học viên / tháng</span></div>
+            <div><strong>40+</strong><span data-i18n="about.s2">lớp mỗi tuần</span></div>
+            <div><strong>12</strong><span data-i18n="about.s3">instructor</span></div>
+            <div><strong>3</strong><span data-i18n="about.s4">phòng tập</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="svc.label">Dịch vụ</p>
+        <h2 data-i18n="svc.title">Ba trụ cột của MA</h2>
+      </div>
+      <div class="svc-grid">
+        <article class="svc-card reveal">
+          <span class="svc-num">01</span>
+          <h3 data-i18n="svc.1.t">Dạy nhảy K-Pop</h3>
+          <p data-i18n="svc.1.d">Lớp one-day mọi level. Choreo từ MV hot, challenge viral và original của team MA.</p>
+          <a href="#classes" class="svc-link" data-i18n="svc.link">Xem lớp →</a>
+        </article>
+        <article class="svc-card reveal">
+          <span class="svc-num">02</span>
+          <h3 data-i18n="svc.2.t">Cho thuê phòng tập</h3>
+          <p data-i18n="svc.2.d">Studio hiện đại: gương full, âm thanh mạnh, điều hòa. Thuê theo giờ cho team hoặc cá nhân.</p>
+          <a href="#contact" class="svc-link" data-i18n="svc.link2">Đặt phòng →</a>
+        </article>
+        <article class="svc-card reveal">
+          <span class="svc-num">03</span>
+          <h3 data-i18n="svc.3.t">Biên đạo & sự kiện</h3>
+          <p data-i18n="svc.3.d">Choreography cho cá nhân, team, brand event, MV cover. Team MA sẵn sàng sản xuất.</p>
+          <a href="#contact" class="svc-link" data-i18n="svc.link3">Tư vấn →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STYLES CATALOG -->
+  <section class="styles section-light" id="styles" data-header-theme="light">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="sty.label">Catalog</p>
+        <h2 data-i18n="sty.title">Khám phá đam mê theo style</h2>
+        <p class="section-sub" data-i18n="sty.sub">Từ K-Pop đến street — chọn vibe của bạn.</p>
+      </div>
+      <div class="styles-grid">
+        <a href="#classes" class="style-card reveal"><img src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F50f960d9-12c4-4fc5-ac36-a2d516369df4-Hip_Hop_dancer_posing_2K_202609082224-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span>HIP-HOP</span></a>
+        <a href="#classes" class="style-card reveal"><img src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F80b82a7f-7a55-4f35-955e-84e78828591f-Girl_practicing_dance_in_class_2K_202609082118-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span>K-POP</span></a>
+        <a href="#classes" class="style-card reveal"><img src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2F8eecbe74-7dd6-4c7a-abaa-20a4156fb9e1-Women_dancing_in_dance_studio_2K_202609081453-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span>GIRLS HIP</span></a>
+        <a href="#classes" class="style-card reveal"><img src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F8e32a794-3ed6-4d0a-a249-cc4dad6b54a5-Dancer_holding_gold_dance_barre_2K_202609081516-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span>WAACKING</span></a>
+        <a href="#classes" class="style-card reveal"><img src="https://api.minstudio.vn/api/files/page-content%2Fclass-lineup-image%2F2026-09-12%2Ffb606093-c478-464f-b233-bf257eb501fd-Dancers_in_modern_studio_2K_20260911185950-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span>URBAN</span></a>
+        <a href="#classes" class="style-card reveal"><img src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2Fc2fb48a9-7b98-44c3-b9c1-0868bd328613-Dancers_performing_TikTok_dance_%C3%A2%C2%80%C2%A6_2K_202609082210-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span>COVER</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORIZONTAL SCROLL: CLASSES -->
+  <section class="hscroll-section" id="classes">
+    <div class="hscroll-sticky">
+      <div class="hscroll-head">
+        <p class="label" data-i18n="cls.label">Chương trình</p>
+        <h2 data-i18n="cls.title">Chọn level của bạn</h2>
+        <p class="hscroll-hint" data-i18n="cls.hint">← Kéo ngang để xem thêm →</p>
+      </div>
+      <div class="hscroll-track" id="hscrollTrack">
+        <article class="hscroll-card">
+          <span class="htag">BEGINNER</span>
+          <h3 data-i18n="cls.b.t">Step by MA</h3>
+          <p data-i18n="cls.b.d">Chưa từng nhảy? Nhịp chậm, breakdown rõ, focus fun và cảm giác cơ thể.</p>
+          <ul>
+            <li data-i18n="cls.dur">80 phút / buổi</li>
+            <li data-i18n="cls.b.l">Cơ bản tuyệt đối</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm" data-i18n="cls.book">Đặt lớp</a>
+        </article>
+        <article class="hscroll-card">
+          <span class="htag">STARTER</span>
+          <h3 data-i18n="cls.s.t">Starter</h3>
+          <p data-i18n="cls.s.d">Đã biết chút cơ bản. Moves đa dạng + full choreo cao hơn Beginner một nấc.</p>
+          <ul>
+            <li data-i18n="cls.dur">80 phút / buổi</li>
+            <li data-i18n="cls.s.l">Cơ bản+</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm" data-i18n="cls.book">Đặt lớp</a>
+        </article>
+        <article class="hscroll-card">
+          <span class="htag">LEARNER</span>
+          <h3 data-i18n="cls.l.t">Learner</h3>
+          <p data-i18n="cls.l.d">Củng cố kỹ thuật, bắt nhịp nhanh, làm chủ full track trong 1–2 buổi.</p>
+          <ul>
+            <li data-i18n="cls.dur">80 phút / buổi</li>
+            <li data-i18n="cls.l.l">Trung cấp</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm" data-i18n="cls.book">Đặt lớp</a>
+        </article>
+        <article class="hscroll-card">
+          <span class="htag">MASTER</span>
+          <h3 data-i18n="cls.m.t">Master</h3>
+          <p data-i18n="cls.m.d">Choreo khó, performance quality, detail & musicality. Cho dancer nghiêm túc.</p>
+          <ul>
+            <li data-i18n="cls.dur">80 phút / buổi</li>
+            <li data-i18n="cls.m.l">Nâng cao</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm" data-i18n="cls.book">Đặt lớp</a>
+        </article>
+        <article class="hscroll-card">
+          <span class="htag">PRO / POPUP</span>
+          <h3 data-i18n="cls.p.t">Pro & Popup</h3>
+          <p data-i18n="cls.p.d">Guest choreographer hoặc instructor top. Intensity cao, vibe pro.</p>
+          <ul>
+            <li data-i18n="cls.dur2">80–90 phút</li>
+            <li data-i18n="cls.p.l">Chuyên sâu</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm" data-i18n="cls.book">Đặt lớp</a>
+        </article>
+        <article class="hscroll-card hscroll-card-cta">
+          <h3 data-i18n="cls.cta.t">Chưa biết chọn level?</h3>
+          <p data-i18n="cls.cta.d">Nhắn team MA — chúng tôi tư vấn class phù hợp trong 2 phút.</p>
+          <a href="#contact" class="btn btn-ghost btn-sm" data-i18n="cls.cta.b">Nhắn tư vấn</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SCHEDULE LIVE -->
+  <section class="schedule" id="schedule">
+    <div class="container">
+      <div class="schedule-head reveal">
+        <div>
+          <p class="label" data-i18n="sch.label">Lịch học</p>
+          <h2 data-i18n="sch.title">Lịch học hôm nay — LIVE</h2>
+        </div>
+        <span class="schedule-live" data-i18n="sch.live">LIVE NOW</span>
+      </div>
+      <div class="schedule-list">
+        <article class="schedule-row reveal">
+          <time>18:00 – 19:20</time>
+          <div><h3>K-Pop Cover · Starter</h3><p data-i18n="sch.r1">HYE · Phòng A</p></div>
+          <a href="#contact" class="btn btn-ghost btn-sm" data-i18n="sch.book">Đăng ký</a>
+        </article>
+        <article class="schedule-row reveal">
+          <time>19:30 – 20:50</time>
+          <div><h3>Hip-Hop · Learner</h3><p data-i18n="sch.r2">JIN · Phòng B</p></div>
+          <a href="#contact" class="btn btn-ghost btn-sm" data-i18n="sch.book">Đăng ký</a>
+        </article>
+        <article class="schedule-row reveal">
+          <time>20:00 – 21:30</time>
+          <div><h3>Girls Hip · Master</h3><p data-i18n="sch.r3">MIN · Phòng A</p></div>
+          <a href="#contact" class="btn btn-ghost btn-sm" data-i18n="sch.book">Đăng ký</a>
+        </article>
+        <article class="schedule-row reveal">
+          <time>21:00 – 22:20</time>
+          <div><h3>Choreography · Pro</h3><p data-i18n="sch.r4">SOO · Phòng A</p></div>
+          <a href="#contact" class="btn btn-ghost btn-sm" data-i18n="sch.book">Đăng ký</a>
+        </article>
+      </div>
+      <p class="schedule-note" data-i18n="sch.note">Demo lịch — nhắn studio để xác nhận slot thật.</p>
+    </div>
+  </section>
+
+  <!-- REELS -->
+  <section class="reels section-light" id="reels" data-header-theme="light">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="reel.label">Viral</p>
+        <h2 data-i18n="reel.title">Chuyển động đang cháy</h2>
+      </div>
+    </div>
+    <div class="reels-track">
+      <article class="reel-card"><img src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2Ff635f45b-01aa-4a2b-891a-e95585237e38-Dancer_jumping_in_studio_2K_202609081453-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span data-i18n="reel.1">Jump energy</span></article>
+      <article class="reel-card"><img src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2F8eecbe74-7dd6-4c7a-abaa-20a4156fb9e1-Women_dancing_in_dance_studio_2K_202609081453-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span data-i18n="reel.2">Studio crew</span></article>
+      <article class="reel-card"><img src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2Fc2fb48a9-7b98-44c3-b9c1-0868bd328613-Dancers_performing_TikTok_dance_%C3%A2%C2%80%C2%A6_2K_202609082210-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span data-i18n="reel.3">Challenge</span></article>
+      <article class="reel-card"><img src="https://api.minstudio.vn/api/files/page-content%2Fabout-background%2F2026-09-20%2Fa15215b7-dd27-4b2c-8355-469c09917140-Dancer_jumping_in_studio_2K_202609081453-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span data-i18n="reel.4">Air time</span></article>
+      <article class="reel-card"><img src="https://api.minstudio.vn/api/files/page-content%2Fchoreography-thumbnail%2F2026-09-14%2F2310b4e1-99ca-4de1-8b78-4bddfca84bcb-Dance_performers_on_corporate_stage_2K_20260914220917.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><span data-i18n="reel.5">Stage ready</span></article>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="facilities" id="facilities">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="fac.label">Trải nghiệm</p>
+        <h2 data-i18n="fac.title">Không gian đẳng cấp</h2>
+        <p class="section-sub" data-i18n="fac.sub">Ánh sáng · âm thanh · sàn — đủ để bạn cháy hết mình.</p>
+      </div>
+      <div class="fac-grid">
+        <article class="fac-card reveal">
+          <div class="fac-media"><img src="https://api.minstudio.vn/api/files/page-content%2Fclass-lineup-image%2F2026-09-12%2Ffb606093-c478-464f-b233-bf257eb501fd-Dancers_in_modern_studio_2K_20260911185950-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div>
+          <h3 data-i18n="fac.1.t">Hệ thống ánh sáng</h3>
+          <p data-i18n="fac.1.d">Đèn đa sắc, vibe sân khấu — tập như đang lên show.</p>
+        </article>
+        <article class="fac-card reveal">
+          <div class="fac-media"><img src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F3f35711b-8a0f-4cb6-b1e3-53f2f86626f0-z6672656388974_5e6dfc9471b9df5b955dc4c5a776e71a-cropped.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div>
+          <h3 data-i18n="fac.2.t">Âm thanh chuẩn</h3>
+          <p data-i18n="fac.2.d">Bass chắc, phủ đều phòng — nghe rõ từng count.</p>
+        </article>
+        <article class="fac-card reveal">
+          <div class="fac-media"><img src="https://api.minstudio.vn/api/files/page-content%2Fabout-story%2F2026-09-18%2F4b732354-aa54-4c0a-9fff-d194dd6395b6-Students_resting_in_dance_studio_2K_20260916195126-cropped.jpeg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div>
+          <h3 data-i18n="fac.3.t">Không gian thoáng</h3>
+          <p data-i18n="fac.3.d">Gương full, điều hòa, khu nghỉ — buổi tập mượt hơn.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how section-light" id="how" data-header-theme="light">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="how.label">Cách tham gia</p>
+        <h2 data-i18n="how.title">4 bước lên sàn</h2>
+      </div>
+      <div class="how-steps">
+        <div class="how-step reveal"><span class="how-n">01</span><h3 data-i18n="how.1.t">Chọn lớp</h3><p data-i18n="how.1.d">Xem lịch hoặc nhắn studio. Chọn level + khung giờ phù hợp.</p></div>
+        <div class="how-step reveal"><span class="how-n">02</span><h3 data-i18n="how.2.t">Giữ chỗ</h3><p data-i18n="how.2.d">Thanh toán / xác nhận qua Zalo. Slot thường full trước 1–2 ngày.</p></div>
+        <div class="how-step reveal"><span class="how-n">03</span><h3 data-i18n="how.3.t">Đến studio</h3><p data-i18n="how.3.d">Tới trước 10 phút. Có phòng thay đồ, tủ khóa, nước.</p></div>
+        <div class="how-step reveal"><span class="how-n">04</span><h3 data-i18n="how.4.t">Nhảy hết mình</h3><p data-i18n="how.4.d">80 phút cháy hết pin. Về nhà với full choreography.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTORS -->
+  <section class="instructors" id="instructors">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="inst.label">Giảng viên</p>
+        <h2 data-i18n="inst.title">Người đứng lớp cùng bạn</h2>
+      </div>
+      <div class="inst-grid">
+        <article class="inst-card reveal"><div class="inst-photo"><img class="inst-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F50f960d9-12c4-4fc5-ac36-a2d516369df4-Hip_Hop_dancer_posing_2K_202609082224-cropped.jpeg" alt="HYE" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><div class="inst-overlay"><span>K-Pop · Hip-Hop</span></div></div><div class="inst-info"><h3>HYE</h3><p data-i18n="inst.choreo">Choreographer</p></div></article>
+        <article class="inst-card reveal"><div class="inst-photo"><img class="inst-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F80b82a7f-7a55-4f35-955e-84e78828591f-Girl_practicing_dance_in_class_2K_202609082118-cropped.jpeg" alt="MIN" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><div class="inst-overlay"><span>Girls Hip · Waacking</span></div></div><div class="inst-info"><h3>MIN</h3><p data-i18n="inst.choreo">Choreographer</p></div></article>
+        <article class="inst-card reveal"><div class="inst-photo"><img class="inst-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F8e32a794-3ed6-4d0a-a249-cc4dad6b54a5-Dancer_holding_gold_dance_barre_2K_202609081516-cropped.jpeg" alt="JIN" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><div class="inst-overlay"><span>Urban · Popping</span></div></div><div class="inst-info"><h3>JIN</h3><p data-i18n="inst.inst">Instructor</p></div></article>
+        <article class="inst-card reveal"><div class="inst-photo"><img class="inst-img" src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2F8eecbe74-7dd6-4c7a-abaa-20a4156fb9e1-Women_dancing_in_dance_studio_2K_202609081453-cropped.jpeg" alt="SOO" loading="lazy" decoding="async" referrerpolicy="no-referrer" /><div class="inst-overlay"><span>K-Pop · Contemporary</span></div></div><div class="inst-info"><h3>SOO</h3><p data-i18n="inst.inst">Instructor</p></div></article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section-light" id="testimonials" data-header-theme="light">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="tes.label">Học viên</p>
+        <h2 data-i18n="tes.title">Họ nói gì về MA</h2>
+      </div>
+      <div class="tes-grid">
+        <blockquote class="tes-card reveal"><p data-i18n="tes.1.q">“Lớp K-Pop quá cháy — instructor breakdown dễ hiểu, vibe cực đã.”</p><footer>— Lan Anh</footer></blockquote>
+        <blockquote class="tes-card reveal"><p data-i18n="tes.2.q">“Phòng tập sạch, âm thanh mạnh. MA như nhà thứ hai.”</p><footer>— Minh Khoa</footer></blockquote>
+        <blockquote class="tes-card reveal"><p data-i18n="tes.3.q">“Choreo update trend liên tục. Mỗi tuần một track mới.”</p><footer>— Bảo Trâm</footer></blockquote>
+        <blockquote class="tes-card reveal"><p data-i18n="tes.4.q">“Từ zero đến full choreo trong vài buổi. Recommend!”</p><footer>— Nhật Hà</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing section-light" id="pricing" data-header-theme="light">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="price.label">Bảng giá</p>
+        <h2 data-i18n="price.title">Minh bạch, dễ chọn</h2>
+      </div>
+      <div class="price-grid">
+        <article class="price-card reveal">
+          <p class="price-tag" data-i18n="price.1.tag">One-day</p>
+          <h3 data-i18n="price.1.t">Vé lẻ</h3>
+          <div class="price-num">150<span data-i18n="price.unit">.000đ</span></div>
+          <p class="price-desc" data-i18n="price.1.d">1 buổi bất kỳ (Beginner → Master)</p>
+          <ul>
+            <li data-i18n="price.1.f1">Full 80 phút</li>
+            <li data-i18n="price.1.f2">Không hạn level</li>
+            <li data-i18n="price.1.f3">Giữ chỗ trước</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost btn-full" data-i18n="price.cta">Đặt vé</a>
+        </article>
+        <article class="price-card price-featured reveal">
+          <p class="price-tag" data-i18n="price.2.tag">Phổ biến</p>
+          <h3 data-i18n="price.2.t">Gói 5 buổi</h3>
+          <div class="price-num">650<span data-i18n="price.unit">.000đ</span></div>
+          <p class="price-desc" data-i18n="price.2.d">Tiết kiệm ~13% · dùng trong 45 ngày</p>
+          <ul>
+            <li data-i18n="price.2.f1">5 buổi linh hoạt</li>
+            <li data-i18n="price.2.f2">Mọi level</li>
+            <li data-i18n="price.2.f3">Ưu tiên giữ chỗ</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-full" data-i18n="price.cta">Mua gói</a>
+        </article>
+        <article class="price-card reveal">
+          <p class="price-tag" data-i18n="price.3.tag">Studio</p>
+          <h3 data-i18n="price.3.t">Thuê phòng</h3>
+          <div class="price-num">200<span data-i18n="price.unit">.000đ/h</span></div>
+          <p class="price-desc" data-i18n="price.3.d">Phòng A/B · tối đa 12–15 người</p>
+          <ul>
+            <li data-i18n="price.3.f1">Gương full + sound</li>
+            <li data-i18n="price.3.f2">Điều hòa</li>
+            <li data-i18n="price.3.f3">Book theo giờ</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost btn-full" data-i18n="price.cta2">Đặt phòng</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY horizontal feel -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="gal.label">Studio</p>
+        <h2 data-i18n="gal.title">Không gian MA</h2>
+      </div>
+    </div>
+    <div class="gal-track">
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Fabout-background%2F2026-09-20%2Fa15215b7-dd27-4b2c-8355-469c09917140-Dancer_jumping_in_studio_2K_202609081453-cropped.jpeg" alt="Studio vibe" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Studio vibe</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F50f960d9-12c4-4fc5-ac36-a2d516369df4-Hip_Hop_dancer_posing_2K_202609082224-cropped.jpeg" alt="Hip-Hop" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Hip-Hop</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F80b82a7f-7a55-4f35-955e-84e78828591f-Girl_practicing_dance_in_class_2K_202609082118-cropped.jpeg" alt="In class" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>In class</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F8e32a794-3ed6-4d0a-a249-cc4dad6b54a5-Dancer_holding_gold_dance_barre_2K_202609081516-cropped.jpeg" alt="Barre" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Barre</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2F3f35711b-8a0f-4cb6-b1e3-53f2f86626f0-z6672656388974_5e6dfc9471b9df5b955dc4c5a776e71a-cropped.jpg" alt="Practice" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Practice</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/courses%2Fgallery%2F2026-09-12%2Fe1ffea56-6ecf-4cfa-81c6-263829944a51-z6672651150642_7b7bb2f64f292179ca7f0765bd06508e-cropped.jpg" alt="Session" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Session</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Fclass-lineup-image%2F2026-09-12%2Ffb606093-c478-464f-b233-bf257eb501fd-Dancers_in_modern_studio_2K_20260911185950-cropped.jpeg" alt="Modern studio" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Modern studio</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2Ff635f45b-01aa-4a2b-891a-e95585237e38-Dancer_jumping_in_studio_2K_202609081453-cropped.jpeg" alt="Jump" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Jump</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2F8eecbe74-7dd6-4c7a-abaa-20a4156fb9e1-Women_dancing_in_dance_studio_2K_202609081453-cropped.jpeg" alt="Group" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Group</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2Fc2fb48a9-7b98-44c3-b9c1-0868bd328613-Dancers_performing_TikTok_dance_%C3%A2%C2%80%C2%A6_2K_202609082210-cropped.jpeg" alt="Challenge" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Challenge</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Fabout-story%2F2026-09-18%2F4b732354-aa54-4c0a-9fff-d194dd6395b6-Students_resting_in_dance_studio_2K_20260916195126-cropped.jpeg" alt="Rest zone" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Rest zone</span></div>
+      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="https://api.minstudio.vn/api/files/page-content%2Fchoreography-thumbnail%2F2026-09-14%2F2310b4e1-99ca-4de1-8b78-4bddfca84bcb-Dance_performers_on_corporate_stage_2K_20260914220917.jpeg" alt="Stage" loading="lazy" decoding="async" referrerpolicy="no-referrer" /></div><span>Stage</span></div>
+    </div>
+  </section>
+
+
+  <!-- BRANCHES -->
+  <section class="branches" id="branches">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="br.label">Cơ sở</p>
+        <h2 data-i18n="br.title">Hệ thống studio</h2>
+      </div>
+      <div class="br-grid">
+        <article class="br-card reveal">
+          <h3 data-i18n="br.1.t">MA Studio · Q.1</h3>
+          <p data-i18n="br.1.a">123 Đường Nhảy, Quận 1, TP.HCM</p>
+          <p class="br-meta">Hotline · 090 123 4567</p>
+          <a href="#contact" class="svc-link" data-i18n="br.map">Nhắn để đến →</a>
+        </article>
+        <article class="br-card reveal">
+          <h3 data-i18n="br.2.t">MA Studio · Thủ Đức</h3>
+          <p data-i18n="br.2.a">Demo cơ sở 2 — cập nhật địa chỉ thật sau.</p>
+          <p class="br-meta">Hotline · 090 123 4567</p>
+          <a href="#contact" class="svc-link" data-i18n="br.map">Nhắn để đến →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section-light" id="faq" data-header-theme="light">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label" data-i18n="faq.label">FAQ</p>
+        <h2 data-i18n="faq.title">Câu hỏi thường gặp</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal"><summary data-i18n="faq.1.q">Chưa từng nhảy có học được không?</summary><p data-i18n="faq.1.a">Có. Lớp Step by MA và Starter dành cho người mới. Instructor breakdown chậm, tập trung fun và cảm giác.</p></details>
+        <details class="faq-item reveal"><summary data-i18n="faq.2.q">Lớp kéo dài bao lâu?</summary><p data-i18n="faq.2.a">Thường 80 phút. Pro/Popup có thể 90 phút. Nên đến trước 10 phút để chuẩn bị.</p></details>
+        <details class="faq-item reveal"><summary data-i18n="faq.3.q">Có cần đăng ký trước không?</summary><p data-i18n="faq.3.a">Nên giữ chỗ trước. Slot thường full 1–2 ngày. Nhắn Zalo hoặc form trên web để confirm.</p></details>
+        <details class="faq-item reveal"><summary data-i18n="faq.4.q">Có cho thuê phòng riêng không?</summary><p data-i18n="faq.4.a">Có. Phòng A/B thuê theo giờ, phù hợp team cover, luyện tập, quay video.</p></details>
+        <details class="faq-item reveal"><summary data-i18n="faq.5.q">Mang gì khi đến lớp?</summary><p data-i18n="faq.5.a">Đồ thể thao thoải mái, giày sạch (không đế bẩn), nước. Studio có tủ khóa và phòng thay đồ.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="banner">
+    <div class="banner-inner reveal">
+      <h2 data-i18n="banner.title">Sẵn sàng lên sàn chưa?</h2>
+      <p data-i18n="banner.sub">Chọn 1 buổi → đến studio → nhảy hết mình. Không cần kinh nghiệm.</p>
+      <a href="#contact" class="btn btn-primary btn-lg" data-i18n="banner.cta">Đặt lớp đầu tiên</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="label" data-i18n="ct.label">Liên hệ</p>
+          <h2 data-i18n="ct.title">Nhắn để giữ chỗ</h2>
+          <p class="contact-desc" data-i18n="ct.desc">Gửi form hoặc nhắn Zalo. Team confirm lịch trong 1–2 giờ.</p>
+          <ul class="contact-list">
+            <li><span class="ct-label" data-i18n="ct.address">Địa chỉ</span><span data-i18n="ct.addressVal">123 Đường Nhảy, Quận 1, TP.HCM</span></li>
+            <li><span class="ct-label" data-i18n="ct.phone">Zalo / Phone</span><span>+84 90 123 4567</span></li>
+            <li><span class="ct-label" data-i18n="ct.email">Email</span><span>hello@madance.studio</span></li>
+            <li><span class="ct-label" data-i18n="ct.hours">Giờ mở cửa</span><span data-i18n="ct.hoursVal">T2 – CN: 09:00 – 22:00</span></li>
+          </ul>
+          <div class="socials">
+            <a href="#">IG</a><a href="#">TT</a><a href="#">YT</a><a href="#">FB</a>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-row">
+            <input type="text" name="name" required data-i18n-placeholder="ct.name" placeholder="Họ tên" />
+            <input type="tel" name="phone" required data-i18n-placeholder="ct.phonePh" placeholder="Zalo / SĐT" />
+          </div>
+          <select name="interest">
+            <option value="" data-i18n="ct.interest">Bạn quan tâm gì?</option>
+            <option value="step">Step by MA</option>
+            <option value="starter">Starter</option>
+            <option value="learner">Learner</option>
+            <option value="master">Master</option>
+            <option value="pro">Pro / Popup</option>
+            <option value="rent">Thuê phòng</option>
+            <option value="other">Tư vấn khác</option>
+          </select>
+          <textarea name="message" rows="4" data-i18n-placeholder="ct.message" placeholder="Ngày/giờ mong muốn..."></textarea>
+          <button type="submit" class="btn btn-primary btn-full" data-i18n="ct.send">Gửi yêu cầu</button>
+          <p class="form-note" data-i18n="ct.note">Phản hồi trong 1–2 giờ (giờ làm việc).</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo logo--footer">
+            <img src="logo.png" alt="MA" class="footer-logo" />
+            <span class="logo-tag">DANCE STUDIO</span>
+          </a>
+          <p data-i18n="ft.tagline">Không cần sân khấu để bắt đầu nhảy.</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h4 data-i18n="ft.studio">Studio</h4>
+            <a href="#about" data-i18n="nav.about">Giới thiệu</a>
+            <a href="#services" data-i18n="nav.services">Dịch vụ</a>
+            <a href="#instructors" data-i18n="nav.instructors">Giảng viên</a>
+          </div>
+          <div>
+            <h4 data-i18n="ft.join">Tham gia</h4>
+            <a href="#classes" data-i18n="nav.classes">Lớp học</a>
+            <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
+            <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MA Dance Studio</p>
+        <p data-i18n="ft.made">Made for dancers who just want to move.</p>
+      </div>
+    </div>
+  </footer>
