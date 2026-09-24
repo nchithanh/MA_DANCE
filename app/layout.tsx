@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import "./ma-dance.css";
 
-const inter = Inter({
+const beVietnam = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-bebas",
+  variable: "--font-be-vietnam",
   display: "swap",
 });
 
@@ -26,8 +19,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" className={`${inter.variable} ${bebas.variable}`}>
-      <body className={inter.className}>{children}</body>
+    <html lang="vi" className={beVietnam.variable}>
+      <body className={beVietnam.className}>{children}</body>
     </html>
   );
 }

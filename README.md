@@ -10,7 +10,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Official partner: **The New Gene Show** — fixed **top bar** + splash + `#partner` — copy: *MA Dance Studio – đối tác vũ đạo & luyện tập chính thức của The New Gene 2026* → https://thenewgene.vn/
 - Trust / milestones: `#milestones` — dark editorial **bento** with photo tiles.
 - Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
-- Fixed bottom **section spy** (`#sectionSpy`) — full-width black bar, white links; active = white bg + black text; IntersectionObserver scrollspy.
+- Hero: split layout — copy trái / video YouTube phải (stack trên mobile).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
 - Contact: real branch address (Q10 3/2); Zalo / phone **076 466 9969**; Facebook + form CTA.
 
@@ -41,7 +41,7 @@ GITHUB_PAGES=true npm run build  # basePath /MA_DANCE for GitHub Pages
 ## Stack
 
 - Next.js 16 (App Router) · React 19 · static `output: "export"`
-- Fonts: Bebas Neue · Inter (Google Fonts)
+- Fonts: Be Vietnam Pro (Google Fonts · vietnamese)
 
 ## Template source
 
