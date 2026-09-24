@@ -8,8 +8,11 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Branding & copy = **MA Dance Studio** (K-Pop / street dance, HCMC).
 - VI / EN / KR via in-page language switcher (`localStorage` key `ma-lang`).
 - Official partner: **The New Gene Show** — fixed **top bar** + splash + `#partner` — copy: *MA Dance Studio – đối tác vũ đạo & luyện tập chính thức của The New Gene 2026* → https://thenewgene.vn/
-- Trust / milestones: `#milestones` (“Dấu ấn MA”) — dark editorial **bento** with photo tiles (Be Yourself feature · TNG/partner · community · casting).
+- Trust / milestones: `#milestones` — dark editorial **bento** with photo tiles.
+- Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
 - Fixed bottom **section spy** (`#sectionSpy`) — full-width black bar, white links; active = white bg + black text; IntersectionObserver scrollspy.
+- Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
+- Contact: real branch address (Q10 3/2); Zalo / phone **076 466 9969**; Facebook + form CTA.
 
 ## Run
 
@@ -50,3 +53,5 @@ Keep `../ma-dance/` as the static design reference. Port changes from there into
 | `styles.css` | `app/ma-dance.css` |
 | `script.js` | `lib/ma-dance-runtime.js` (`initMaDance`) |
 | `logo.png` | `public/logo.png` (MA monogram; “DANCE STUDIO” là text CSS) |
+| Content photos | `public/media/*.jpg` (local SoT — no `api.minstudio.vn` CDN) |
+| Studio gallery | `public/media/studio-01…08.jpg` — real room photos for `#gallery` |
