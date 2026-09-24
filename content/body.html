@@ -30,12 +30,26 @@
         data-i18n-aria="partner.bar"
         aria-label="MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026"
       >
-        <span class="top-bar__lockup" aria-hidden="true">
-          <img src="logo.png" alt="" width="20" height="14" />
-          <span class="top-bar__x">×</span>
-          <img src="partners/the-new-gene.png" alt="" width="20" height="20" />
+        <span class="top-bar__marquee">
+          <span class="top-bar__track">
+            <span class="top-bar__item">
+              <span class="top-bar__lockup" aria-hidden="true">
+                <img src="logo.png" alt="" width="20" height="14" />
+                <span class="top-bar__x">×</span>
+                <img src="partners/the-new-gene.png" alt="" width="20" height="20" />
+              </span>
+              <span class="top-bar__text" data-i18n="partner.bar">MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026</span>
+            </span>
+            <span class="top-bar__item" aria-hidden="true">
+              <span class="top-bar__lockup">
+                <img src="logo.png" alt="" width="20" height="14" />
+                <span class="top-bar__x">×</span>
+                <img src="partners/the-new-gene.png" alt="" width="20" height="20" />
+              </span>
+              <span class="top-bar__text" data-i18n="partner.bar">MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026</span>
+            </span>
+          </span>
         </span>
-        <span class="top-bar__text" data-i18n="partner.bar">MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026</span>
       </a>
     </div>
   </div>
@@ -186,7 +200,14 @@
   <section class="hero" id="hero">
     <div class="hero-frame" id="heroFrame">
       <div class="hero-media">
-        <iframe src="https://www.youtube.com/embed/_sC66dTpGMw?autoplay=1&mute=1&loop=1&playlist=_sC66dTpGMw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="MA Dance Studio" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe
+          id="heroVideo"
+          src="https://www.youtube.com/embed/_sC66dTpGMw?autoplay=1&mute=1&loop=1&playlist=_sC66dTpGMw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+          title="MA Dance Studio"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowfullscreen
+          playsinline
+        ></iframe>
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
@@ -778,12 +799,17 @@
           <p class="label" data-i18n="ct.label">Liên hệ</p>
           <h2 data-i18n="ct.title">Nhắn để giữ chỗ</h2>
           <p class="contact-desc" data-i18n="ct.desc">Gửi form hoặc nhắn Zalo. Team confirm lịch trong 1–2 giờ.</p>
-          <ul class="contact-list">
-            <li><span class="ct-label" data-i18n="ct.address">Địa chỉ</span><span data-i18n="ct.addressVal">123 Đường Nhảy, Quận 1, TP.HCM</span></li>
-            <li><span class="ct-label" data-i18n="ct.phone">Zalo / Phone</span><span>+84 90 123 4567</span></li>
-            <li><span class="ct-label" data-i18n="ct.email">Email</span><span>hello@madance.studio</span></li>
-            <li><span class="ct-label" data-i18n="ct.hours">Giờ mở cửa</span><span data-i18n="ct.hoursVal">T2 – CN: 09:00 – 22:00</span></li>
-          </ul>
+          <details class="contact-box" id="contactBox">
+            <summary class="contact-box__summary">
+              <span data-i18n="ct.box">Thông tin liên hệ</span>
+            </summary>
+            <ul class="contact-list">
+              <li><span class="ct-label" data-i18n="ct.address">Địa chỉ</span><span data-i18n="ct.addressVal">123 Đường Nhảy, Quận 1, TP.HCM</span></li>
+              <li><span class="ct-label" data-i18n="ct.phone">Zalo / Phone</span><span>+84 90 123 4567</span></li>
+              <li><span class="ct-label" data-i18n="ct.email">Email</span><span>hello@madance.studio</span></li>
+              <li><span class="ct-label" data-i18n="ct.hours">Giờ mở cửa</span><span data-i18n="ct.hoursVal">T2 – CN: 09:00 – 22:00</span></li>
+            </ul>
+          </details>
           <div class="socials">
             <a href="#">IG</a><a href="#">TT</a><a href="#">YT</a><a href="#">FB</a>
           </div>
