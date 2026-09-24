@@ -82,11 +82,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   font-size:clamp(.72rem,2.1vw,.88rem);
   font-weight:500;line-height:1.45;
   color:rgba(255,255,255,.78);
-  opacity:0;transform:translateY(12px);
-  animation:loaderCopyIn .65s cubic-bezier(.22,1,.36,1) forwards;
 }
-.page-loader__line:nth-child(1){animation-delay:1.55s}
-.page-loader__line:nth-child(2){animation-delay:1.9s}
 @keyframes loaderLogoIn{
   to{opacity:1;transform:scale(1)}
 }
@@ -100,19 +96,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes loaderBar{
   to{width:100%}
 }
-@keyframes loaderCopyIn{
-  to{opacity:1;transform:translateY(0)}
-}
 @media(prefers-reduced-motion:reduce){
-  .page-loader__logo,.page-loader__bar span,.page-loader__tag > span,.page-loader__line{animation:none;opacity:1;transform:none;width:auto}
+  .page-loader__logo,.page-loader__bar span,.page-loader__tag > span{animation:none;opacity:1;transform:none;width:auto}
   .page-loader__bar span{width:100%}
+  .header,.side-rail,.bottom-bar{transition:none!important}
 }
 
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* HEADER — solid black / solid white only */
-.header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--h);background:#050505;border-bottom:1px solid transparent;transition:background .25s,border-color .25s,color .25s}
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--h);
+  background:#050505;border-bottom:1px solid transparent;
+  transform:translateY(0);
+  transition:background .25s,border-color .25s,color .25s,transform .35s cubic-bezier(.22,1,.36,1);
+}
+.header.is-chrome-hidden{transform:translateY(-100%)}
 .header.scrolled{border-color:var(--border)}
 .header-inner{height:100%;width:min(1200px,94%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
 .logo{
@@ -217,7 +217,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   top:0;
   bottom:0;
   right:0;
+  transform:translateX(0);
+  transition:transform .35s cubic-bezier(.22,1,.36,1);
 }
+.side-rail.is-chrome-hidden{transform:translateX(100%)}
 .side-rail__menu{
   display:flex;flex-direction:column;gap:7px;padding:8px;width:100%;
   align-items:center;justify-content:center;
@@ -679,7 +682,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     background:#000;border-top:1px solid #fff;
     align-items:center;justify-content:center;
     padding:0 3.5rem;
+    transform:translateY(0);
+    transition:transform .35s cubic-bezier(.22,1,.36,1);
   }
+  .bottom-bar.is-chrome-hidden{transform:translateY(100%)}
   .bottom-bar__menu{
     position:absolute;left:.35rem;top:50%;transform:translateY(-50%);
     width:48px;height:48px;
