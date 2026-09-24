@@ -5,10 +5,38 @@
         <span>D</span><span>A</span><span>N</span><span>C</span><span>E</span><span class="page-loader__gap" aria-hidden="true"></span><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span>
       </p>
       <div class="page-loader__bar" aria-hidden="true"><span></span></div>
+      <div class="page-loader__partner" aria-label="Official partner">
+        <div class="page-loader__partner-lockup">
+          <img src="logo.png" alt="" width="48" height="34" />
+          <span class="page-loader__partner-x" aria-hidden="true">×</span>
+          <img src="partners/the-new-gene.png" alt="" width="48" height="48" />
+        </div>
+        <strong data-i18n="partner.bar">MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026</strong>
+      </div>
       <div class="page-loader__copy">
         <p class="page-loader__line" data-i18n="loader.l1">Trung tâm dạy nhảy hàng đầu Thành phố Hồ Chí Minh</p>
         <p class="page-loader__line" data-i18n="loader.l2">Cung cấp dancer, biên đạo công ty và các tiết mục nghệ thuật</p>
       </div>
+    </div>
+  </div>
+
+  <div class="top-bar" id="topBar">
+    <div class="top-bar__inner">
+      <a
+        class="top-bar__partner"
+        href="https://thenewgene.vn/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-i18n-aria="partner.bar"
+        aria-label="MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026"
+      >
+        <span class="top-bar__lockup" aria-hidden="true">
+          <img src="logo.png" alt="" width="20" height="14" />
+          <span class="top-bar__x">×</span>
+          <img src="partners/the-new-gene.png" alt="" width="20" height="20" />
+        </span>
+        <span class="top-bar__text" data-i18n="partner.bar">MA DANCE STUDIO – ĐỐI TÁC VŨ ĐẠO &amp; LUYỆN TẬP CHÍNH THỨC CỦA THE NEW GENE 2026</span>
+      </a>
     </div>
   </div>
 
@@ -18,7 +46,7 @@
         <img src="logo.png" alt="MA" />
         <span class="logo-tag">DANCE STUDIO</span>
       </a>
-            <nav class="nav">
+      <nav class="nav">
         <a href="#about" data-i18n="nav.about">Giới thiệu</a>
         <a href="#styles" data-i18n="nav.styles">Styles</a>
         <a href="#classes" data-i18n="nav.classes">Lớp học</a>
@@ -43,38 +71,45 @@
     <div class="mobile-menu__backdrop" id="mobileMenuBackdrop" tabindex="-1"></div>
     <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="mobile-menu__top">
-        <div class="lang-switcher lang-switcher--drawer">
-          <button class="lang-btn active" data-lang="vi">VN</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="kr">KR</button>
+        <a href="#" class="mobile-menu__brand" aria-label="MA Dance Studio">
+          <img src="logo.png" alt="" width="64" height="46" />
+          <span>MA Dance</span>
+        </a>
+        <div class="mobile-menu__top-actions">
+          <div class="lang-switcher lang-switcher--drawer">
+            <button class="lang-btn active" data-lang="vi">VN</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="kr">KR</button>
+          </div>
+          <button
+            type="button"
+            class="mobile-menu__close"
+            id="mobileMenuClose"
+            aria-label="Close menu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </button>
         </div>
       </div>
+      <p class="mobile-menu__eyebrow" data-i18n="menu.eyebrow">Menu</p>
       <nav class="mobile-menu__nav">
-        <a href="#about" data-i18n="nav.about">Giới thiệu</a>
-        <a href="#styles" data-i18n="nav.styles">Styles</a>
-        <a href="#classes" data-i18n="nav.classes">Lớp học</a>
-        <a href="#schedule" data-i18n="nav.schedule">Lịch</a>
-        <a href="#instructors" data-i18n="nav.instructors">Giảng viên</a>
-        <a href="#pricing" data-i18n="nav.pricing">Bảng giá</a>
-        <a href="#branches" data-i18n="nav.branches">Chi nhánh</a>
-        <a href="#social" data-i18n="nav.social">Social</a>
-        <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+        <a href="#about"><em>01</em><span data-i18n="nav.about">Giới thiệu</span></a>
+        <a href="#styles"><em>02</em><span data-i18n="nav.styles">Styles</span></a>
+        <a href="#classes"><em>03</em><span data-i18n="nav.classes">Lớp học</span></a>
+        <a href="#schedule"><em>04</em><span data-i18n="nav.schedule">Lịch</span></a>
+        <a href="#instructors"><em>05</em><span data-i18n="nav.instructors">Giảng viên</span></a>
+        <a href="#pricing"><em>06</em><span data-i18n="nav.pricing">Bảng giá</span></a>
+        <a href="#branches"><em>07</em><span data-i18n="nav.branches">Chi nhánh</span></a>
+        <a href="#partner"><em>08</em><span data-i18n="nav.partner">Đối tác</span></a>
+        <a href="#milestones"><em>09</em><span data-i18n="nav.milestones">Dấu ấn</span></a>
+        <a href="#social"><em>10</em><span data-i18n="nav.social">Social</span></a>
+        <a href="#contact"><em>11</em><span data-i18n="nav.contact">Liên hệ</span></a>
       </nav>
       <div class="mobile-menu__foot">
-        <div class="mobile-menu__links">
-          <a href="#contact" data-i18n="nav.contact">Contact Us</a>
+        <a href="#contact" class="mobile-menu__cta" data-i18n="nav.book">ĐẶT LỚP</a>
+        <div class="mobile-menu__meta">
           <a href="#faq">FAQ</a>
-        </div>
-        <div class="mobile-menu__social">
-          <a href="https://youtube.com/@madancestudio" class="soc-btn" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.8 15.5v-7l6.2 3.5-6.2 3.5z"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@madancestudio" class="soc-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.6 6.8A4.8 4.8 0 0 1 16.4 4h-3.1v11.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.4a7.8 7.8 0 0 0 4.5 1.4V7.7a4.8 4.8 0 0 1-1.3-.9z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/ma.dance.stu" class="soc-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.6l.4-3H13v-2c0-.6.4-1 1-1z"/></svg>
-          </a>
         </div>
       </div>
     </div>
@@ -84,17 +119,70 @@
     <button type="button" class="side-rail__menu" id="sideRailMenu" aria-label="Menu" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span>
     </button>
-    <a href="#contact" class="side-rail__booking">BOOKING</a>
+    <div class="side-rail__bottom">
+      <nav class="chrome-socials" aria-label="Social">
+        <a href="https://youtube.com/@madancestudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.8 15.5v-7l6.2 3.5-6.2 3.5z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@madancestudio" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.6 6.8A4.8 4.8 0 0 1 16.4 4h-3.1v11.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.4a7.8 7.8 0 0 0 4.5 1.4V7.7a4.8 4.8 0 0 1-1.3-.9z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/ma.dance.stu" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.6l.4-3H13v-2c0-.6.4-1 1-1z"/></svg>
+        </a>
+        <a href="https://zalo.me/0901234567" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12.4 2C7.1 2 2.8 5.9 2.8 10.7c0 2.7 1.4 5.1 3.6 6.7v3.1l3.3-1.8c.8.2 1.7.3 2.6.3 5.3 0 9.6-3.9 9.6-8.7S17.7 2 12.4 2zm.1 14.8c-.8 0-1.6-.1-2.3-.3l-.3-.1-2 .1.7-1.5-.2-.2c-1.5-1.2-2.4-2.9-2.4-4.8 0-3.5 3.2-6.4 7.1-6.4s7.1 2.9 7.1 6.4-3.2 6.8-7.1 6.8zm4-5.6h-1.6v1.6h-1.5v-1.6H11v-1.5h1.6V8.1h1.5v1.6h1.6v1.5h-.2z"/></svg>
+        </a>
+        <a href="tel:+84901234567" aria-label="Hotline">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.9z"/></svg>
+        </a>
+      </nav>
+      <a href="#contact" class="side-rail__booking">BOOKING</a>
+    </div>
   </aside>
 
   <div class="bottom-bar" id="bottomBar" aria-label="Mobile booking">
     <button type="button" class="bottom-bar__menu" id="bottomBarMenu" aria-label="Menu" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span>
     </button>
+    <nav class="chrome-socials" aria-label="Social">
+      <a href="https://youtube.com/@madancestudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.8 15.5v-7l6.2 3.5-6.2 3.5z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@madancestudio" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.6 6.8A4.8 4.8 0 0 1 16.4 4h-3.1v11.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.4a7.8 7.8 0 0 0 4.5 1.4V7.7a4.8 4.8 0 0 1-1.3-.9z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/ma.dance.stu" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.6l.4-3H13v-2c0-.6.4-1 1-1z"/></svg>
+      </a>
+      <a href="https://zalo.me/0901234567" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12.4 2C7.1 2 2.8 5.9 2.8 10.7c0 2.7 1.4 5.1 3.6 6.7v3.1l3.3-1.8c.8.2 1.7.3 2.6.3 5.3 0 9.6-3.9 9.6-8.7S17.7 2 12.4 2zm.1 14.8c-.8 0-1.6-.1-2.3-.3l-.3-.1-2 .1.7-1.5-.2-.2c-1.5-1.2-2.4-2.9-2.4-4.8 0-3.5 3.2-6.4 7.1-6.4s7.1 2.9 7.1 6.4-3.2 6.8-7.1 6.8zm4-5.6h-1.6v1.6h-1.5v-1.6H11v-1.5h1.6V8.1h1.5v1.6h1.6v1.5h-.2z"/></svg>
+      </a>
+      <a href="tel:+84901234567" aria-label="Hotline">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.9z"/></svg>
+      </a>
+    </nav>
     <a href="#contact" class="bottom-bar__booking">BOOKING</a>
   </div>
 
-  <!-- HERO: shrinks on scroll -->
+  <nav class="section-spy" id="sectionSpy" aria-label="Sections">
+    <div class="section-spy__track">
+      <a href="#about" data-spy="about" data-i18n="nav.about">Giới thiệu</a>
+      <a href="#partner" data-spy="partner" data-i18n="nav.partner">Đối tác</a>
+      <a href="#milestones" data-spy="milestones" data-i18n="nav.milestones">Dấu ấn</a>
+      <a href="#services" data-spy="services" data-i18n="nav.services">Dịch vụ</a>
+      <a href="#styles" data-spy="styles" data-i18n="nav.styles">Styles</a>
+      <a href="#classes" data-spy="classes" data-i18n="nav.classes">Lớp học</a>
+      <a href="#schedule" data-spy="schedule" data-i18n="nav.schedule">Lịch</a>
+      <a href="#instructors" data-spy="instructors" data-i18n="nav.instructors">Giảng viên</a>
+      <a href="#pricing" data-spy="pricing" data-i18n="nav.pricing">Bảng giá</a>
+      <a href="#social" data-spy="social" data-i18n="nav.social">Social</a>
+      <a href="#branches" data-spy="branches" data-i18n="nav.branches">Chi nhánh</a>
+      <a href="#contact" data-spy="contact" data-i18n="nav.contact">Liên hệ</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-frame" id="heroFrame">
       <div class="hero-media">
@@ -150,6 +238,116 @@
             <div><strong>3</strong><span data-i18n="about.s4">phòng tập</span></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER: The New Gene -->
+  <section class="partner" id="partner" aria-labelledby="partner-heading">
+    <div class="container partner__inner">
+      <div class="partner__copy reveal">
+        <p class="label partner__label" data-i18n="partner.label">Đối tác</p>
+        <h2 id="partner-heading" data-i18n="partner.title">MA Dance × The New Gene 2026</h2>
+        <div class="partner__body">
+          <p data-i18n="partner.p1">Một màn trình diễn ấn tượng không chỉ được tạo nên từ âm nhạc, mà còn từ từng chuyển động, đội hình và cách nghệ sĩ làm chủ sân khấu.</p>
+          <p data-i18n="partner.p2">Đồng hành cùng The New Gene 2026, MA Dance Studio sẽ góp phần hỗ trợ các thí sinh trong hành trình luyện tập và hoàn thiện phần trình diễn, để mỗi tiết mục không chỉ được nghe, mà còn được nhìn thấy và cảm nhận trọn vẹn trên sân khấu.</p>
+          <p data-i18n="partner.p3">Từ phòng tập đến ánh đèn sân khấu, cùng chờ đón những màn trình diễn bứt phá tại The New Gene 2026!</p>
+        </div>
+        <div class="partner__actions">
+          <a
+            class="btn btn-primary"
+            href="https://thenewgene.vn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="partner.cta"
+          >Xem The New Gene</a>
+          <a class="btn btn-ghost" href="#contact" data-i18n="partner.cta2">Collab với MA</a>
+        </div>
+      </div>
+      <div class="partner__visual reveal">
+        <img src="partners/the-new-gene.png" alt="The New Gene" width="480" height="480" />
+      </div>
+    </div>
+  </section>
+
+  <!-- MILESTONES / TRUST -->
+  <section class="milestones" id="milestones" aria-labelledby="milestones-heading">
+    <div class="milestones__glow" aria-hidden="true"></div>
+    <div class="container milestones__inner">
+      <div class="section-head milestones__head reveal">
+        <p class="label" data-i18n="ms.label">Dấu ấn</p>
+        <h2 id="milestones-heading" data-i18n="ms.title">Dấu ấn MA</h2>
+        <p class="section-sub" data-i18n="ms.sub">Cột mốc và cộng đồng làm nên uy tín studio.</p>
+      </div>
+      <div class="ms-bento">
+        <article class="ms-tile ms-tile--feature reveal">
+          <img
+            class="ms-tile__img"
+            src="https://api.minstudio.vn/api/files/page-content%2Fchoreography-thumbnail%2F2026-09-14%2F2310b4e1-99ca-4de1-8b78-4bddfca84bcb-Dance_performers_on_corporate_stage_2K_20260914220917.jpeg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+          <div class="ms-tile__shade" aria-hidden="true"></div>
+          <div class="ms-tile__body">
+            <span class="ms-tile__num" aria-hidden="true">01</span>
+            <h3 data-i18n="ms.1.t">Cuộc thi Be Yourself</h3>
+            <p data-i18n="ms.1.d">MA tổ chức / đồng hành Be Yourself — sân chơi để dancer thể hiện bản thân trên sàn.</p>
+          </div>
+        </article>
+        <article class="ms-tile ms-tile--partner reveal">
+          <img
+            class="ms-tile__img"
+            src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2Fc2fb48a9-7b98-44c3-b9c1-0868bd328613-Dancers_performing_TikTok_dance_%C3%A2%C2%80%C2%A6_2K_202609082210-cropped.jpeg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+          <div class="ms-tile__shade" aria-hidden="true"></div>
+          <div class="ms-tile__badge" aria-hidden="true">
+            <img src="partners/the-new-gene.png" alt="" width="40" height="40" />
+            <span>The New Gene</span>
+          </div>
+          <div class="ms-tile__body">
+            <span class="ms-tile__num" aria-hidden="true">02</span>
+            <h3 data-i18n="ms.2.t">Đối tác &amp; truyền thông</h3>
+            <p data-i18n="ms.2.d">Collab The New Gene Show · hỗ trợ truyền thông ASEAN Culture Ambassador.</p>
+          </div>
+        </article>
+        <article class="ms-tile reveal">
+          <img
+            class="ms-tile__img"
+            src="https://api.minstudio.vn/api/files/page-content%2Freel-thumbnail%2F2026-09-11%2F8eecbe74-7dd6-4c7a-abaa-20a4156fb9e1-Women_dancing_in_dance_studio_2K_202609081453-cropped.jpeg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+          <div class="ms-tile__shade" aria-hidden="true"></div>
+          <div class="ms-tile__body">
+            <span class="ms-tile__num" aria-hidden="true">03</span>
+            <h3 data-i18n="ms.3.t">Cộng đồng dancer</h3>
+            <p data-i18n="ms.3.d">Kết nối Cộng đồng Dancer Sài Gòn — học, luyện và cháy cùng nhau.</p>
+          </div>
+        </article>
+        <article class="ms-tile reveal">
+          <img
+            class="ms-tile__img"
+            src="https://api.minstudio.vn/api/files/page-content%2Fclass-lineup-image%2F2026-09-12%2Ffb606093-c478-464f-b233-bf257eb501fd-Dancers_in_modern_studio_2K_20260911185950-cropped.jpeg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+          <div class="ms-tile__shade" aria-hidden="true"></div>
+          <div class="ms-tile__body">
+            <span class="ms-tile__num" aria-hidden="true">04</span>
+            <h3 data-i18n="ms.4.t">Casting &amp; studio</h3>
+            <p data-i18n="ms.4.d">Tuyển giảng viên / dancer tại studio — 436A &amp; 101 Đường 3/2, Quận 10.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -640,7 +838,17 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 MA Dance Studio</p>
-        <p data-i18n="ft.made">Made for dancers who just want to move.</p>
+        <div class="footer-meta">
+          <p data-i18n="ft.made">Made for dancers who just want to move.</p>
+          <p class="footer-credit">
+            <span data-i18n="ft.credit">Thiết kế &amp; phát triển bởi</span>
+            <a
+              href="https://dolphin-software.io.vn/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Dolphin Software</a>
+          </p>
+        </div>
       </div>
     </div>
   </footer>

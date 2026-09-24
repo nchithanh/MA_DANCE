@@ -7,6 +7,9 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Rebuilt from static template `products/MA/ma-dance/` (HTML / CSS / JS).
 - Branding & copy = **MA Dance Studio** (K-Pop / street dance, HCMC).
 - VI / EN / KR via in-page language switcher (`localStorage` key `ma-lang`).
+- Official partner: **The New Gene Show** — fixed **top bar** + splash + `#partner` — copy: *MA Dance Studio – đối tác vũ đạo & luyện tập chính thức của The New Gene 2026* → https://thenewgene.vn/
+- Trust / milestones: `#milestones` (“Dấu ấn MA”) — dark editorial **bento** with photo tiles (Be Yourself feature · TNG/partner · community · casting).
+- Fixed bottom **section spy** (`#sectionSpy`) — full-width black bar, white links; active = white bg + black text; IntersectionObserver scrollspy.
 
 ## Run
 
