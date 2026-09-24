@@ -12,7 +12,8 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
 - Hero: split layout — copy trái / video YouTube phải (stack trên mobile).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
-- Contact: real branch address (Q10 3/2); Zalo / phone **076 466 9969**; Facebook + form CTA.
+- Contact / booking CTAs → Google Form https://forms.gle/LUyZiNv2F3Hnu499A (Summer Deal / đăng ký lớp).
+- Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
 
 ## Run
 
