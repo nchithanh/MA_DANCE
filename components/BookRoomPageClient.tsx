@@ -9,6 +9,9 @@ export function BookRoomPageClient() {
   const [branchId, setBranchId] = useState(params.get("branch") || "q10");
   const [roomId, setRoomId] = useState(params.get("room") || "");
   const [sent, setSent] = useState(false);
+  const datePref = params.get("date") || "";
+  const startPref = params.get("start") || "";
+  const hoursPref = params.get("hours") || "2";
   const branch = branches.find((b) => b.id === branchId);
 
   function onSubmit(e: FormEvent) {
@@ -58,15 +61,15 @@ export function BookRoomPageClient() {
           <div className="ma-row ma-row--3">
             <label>
               Ngày
-              <input type="date" name="date" required />
+              <input type="date" name="date" required defaultValue={datePref} />
             </label>
             <label>
               Giờ bắt đầu
-              <input type="time" name="start" required />
+              <input type="time" name="start" required defaultValue={startPref} />
             </label>
             <label>
               Số giờ
-              <input type="number" name="hours" min={1} max={8} step={0.5} defaultValue={1} required />
+              <input type="number" name="hours" min={2} max={8} step={2} defaultValue={hoursPref} required />
             </label>
           </div>
           <label>

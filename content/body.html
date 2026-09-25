@@ -777,15 +777,25 @@
       </div>
     </div>
     <div class="gal-track">
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-01.jpg" alt="Phòng tập MA — tường logo, sàn gỗ tối, đèn warm" loading="lazy" decoding="async" /></div><span>Logo wall</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-02.jpg" alt="Phòng tập MA — gương full, sàn gỗ sáng" loading="lazy" decoding="async" /></div><span>Daylight</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-03.jpg" alt="Phòng tập MA — không gian rộng, cửa sổ city view" loading="lazy" decoding="async" /></div><span>Wide room</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-04.jpg" alt="Phòng tập MA — gương + logo tường xám" loading="lazy" decoding="async" /></div><span>Mirror</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-05.jpg" alt="Phòng tập MA — LED xanh dọc gương" loading="lazy" decoding="async" /></div><span>Blue LED</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-06.jpg" alt="Phòng tập MA — black box, logo trắng" loading="lazy" decoding="async" /></div><span>Black box</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-07.jpg" alt="Phòng tập MA — tường đen, hàng đèn trần" loading="lazy" decoding="async" /></div><span>Dark room</span></div>
-      <div class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-08.jpg" alt="Phòng tập MA — mood tối, rèm cửa sổ" loading="lazy" decoding="async" /></div><span>Mood</span></div>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-01.jpg" alt="Phòng tập MA — tường logo, sàn gỗ tối, đèn warm" loading="lazy" decoding="async" /></div><span>Logo wall</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-02.jpg" alt="Phòng tập MA — gương full, sàn gỗ sáng" loading="lazy" decoding="async" /></div><span>Daylight</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-03.jpg" alt="Phòng tập MA — không gian rộng, cửa sổ city view" loading="lazy" decoding="async" /></div><span>Wide room</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-04.jpg" alt="Phòng tập MA — gương + logo tường xám" loading="lazy" decoding="async" /></div><span>Mirror</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-05.jpg" alt="Phòng tập MA — LED xanh dọc gương" loading="lazy" decoding="async" /></div><span>Blue LED</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-06.jpg" alt="Phòng tập MA — black box, logo trắng" loading="lazy" decoding="async" /></div><span>Black box</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-07.jpg" alt="Phòng tập MA — tường đen, hàng đèn trần" loading="lazy" decoding="async" /></div><span>Dark room</span></button>
+      <button type="button" class="gal-item"><div class="gal-frame"><img class="gal-img" src="media/studio-08.jpg" alt="Phòng tập MA — mood tối, rèm cửa sổ" loading="lazy" decoding="async" /></div><span>Mood</span></button>
     </div>
+    <dialog class="gal-lightbox" id="galLightbox" aria-labelledby="galLightboxCaption">
+      <button type="button" class="gal-lightbox__close" id="galLightboxClose" data-i18n-aria="gal.close" aria-label="Đóng">×</button>
+      <div class="gal-lightbox__stage" id="galLightboxStage">
+        <button type="button" class="gal-lightbox__nav" id="galLightboxPrev" data-i18n-aria="gal.prev" aria-label="Ảnh trước">‹</button>
+        <img id="galLightboxImg" alt="" />
+        <button type="button" class="gal-lightbox__nav" id="galLightboxNext" data-i18n-aria="gal.next" aria-label="Ảnh sau">›</button>
+      </div>
+      <p class="gal-lightbox__cap" id="galLightboxCaption"></p>
+      <div class="gal-lightbox__thumbs" id="galLightboxThumbs" role="tablist" data-i18n-aria="gal.thumbs" aria-label="Ảnh studio"></div>
+    </dialog>
   </section>
 
 

@@ -26,7 +26,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 | `/classes/` | Catalog khóa + lọc |
 | `/enroll/` | Đăng ký học |
 | `/packages/` | Gói 1 / 3 / 6 / 12 tháng |
-| `/rooms/` · `/book-room/` | Catalog phòng + đặt phòng |
+| `/rooms/` · `/book-room/` | 3 hàng CN · ảnh + slot trống/bận demo → form đặt phòng |
 | `/events/` | Brief biên đạo |
 
 ## Run

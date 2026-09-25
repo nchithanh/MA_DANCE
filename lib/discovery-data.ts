@@ -13,13 +13,13 @@ export const branches = [
     name: "Quận 10",
     address: "436A/101 Đường 3/2, Phường Hoà Hưng, TP.HCM",
     rooms: [
-      { id: "mi1", name: "MI1", size: "lớn" },
-      { id: "mi2", name: "MI2", size: "lớn" },
-      { id: "mon3", name: "MON3", size: "nhỏ" },
-      { id: "mon4", name: "MON4", size: "nhỏ" },
-      { id: "mi5", name: "MI5", size: "lớn" },
-      { id: "mon5", name: "MON5", size: "nhỏ" },
-      { id: "lab-q10", name: "Lab", size: "nhỏ · quay" },
+      { id: "mi1", name: "MI1", size: "lớn", photo: "studio-01.jpg" },
+      { id: "mi2", name: "MI2", size: "lớn", photo: "studio-03.jpg" },
+      { id: "mon3", name: "MON3", size: "nhỏ", photo: "studio-02.jpg" },
+      { id: "mon4", name: "MON4", size: "nhỏ", photo: "studio-06.jpg" },
+      { id: "mi5", name: "MI5", size: "lớn", photo: "studio-04.jpg" },
+      { id: "mon5", name: "MON5", size: "nhỏ", photo: "studio-07.jpg" },
+      { id: "lab-q10", name: "Lab", size: "nhỏ · quay", photo: "studio-05.jpg" },
     ],
     note: "MI lớn · MON nhỏ · Lab quay",
   },
@@ -28,9 +28,9 @@ export const branches = [
     name: "Quận 3",
     address: "02 Hồ Xuân Hương, Phường Xuân Hoà, TP.HCM",
     rooms: [
-      { id: "room-a", name: "Room A", size: "~100 m²" },
-      { id: "room-b", name: "Room B", size: "vừa" },
-      { id: "room-c", name: "Room C", size: "nhỏ · practice" },
+      { id: "room-a", name: "Room A", size: "~100 m²", photo: "studio-03.jpg" },
+      { id: "room-b", name: "Room B", size: "vừa", photo: "studio-04.jpg" },
+      { id: "room-c", name: "Room C", size: "nhỏ · practice", photo: "studio-02.jpg" },
     ],
     note: "Room A lớn · B vừa · C practice",
   },
@@ -39,10 +39,10 @@ export const branches = [
     name: "Phú Nhuận",
     address: "522/1 Phan Xích Long, Phường Đức Nhuận, TP.HCM",
     rooms: [
-      { id: "mi3", name: "MI3", size: "lớn" },
-      { id: "mi4", name: "MI4", size: "nhỏ" },
-      { id: "mi6", name: "MI6", size: "lớn" },
-      { id: "practice-pn", name: "Practice", size: "nhỏ · luyện" },
+      { id: "mi3", name: "MI3", size: "lớn", photo: "studio-01.jpg" },
+      { id: "mi4", name: "MI4", size: "nhỏ", photo: "studio-06.jpg" },
+      { id: "mi6", name: "MI6", size: "lớn", photo: "studio-08.jpg" },
+      { id: "practice-pn", name: "Practice", size: "nhỏ · luyện", photo: "studio-07.jpg" },
     ],
     note: "MI3/MI6 lớn · MI4/Practice nhỏ",
   },
@@ -362,4 +362,35 @@ export function countRooms() {
 
 export function branchName(id: BranchId) {
   return branches.find((b) => b.id === id)?.name ?? id;
+}
+
+function hhmm(hour: number) {
+  return `${String(hour).padStart(2, "0")}:00`;
+}
+
+/** Khung 2 tiếng, 07:00 → 22:00. Slot cuối đủ 2h: 19:00–21:00 (còn 21–22 không đủ 1 khung). */
+export const STUDIO_SLOTS = (() => {
+  const slots: { id: string; startHour: number; endHour: number; start: string; end: string; label: string }[] = [];
+  for (let hour = 7; hour + 2 <= 22; hour += 2) {
+    const end = hour + 2;
+    slots.push({
+      id: `${hhmm(hour)}-${hhmm(end)}`,
+      startHour: hour,
+      endHour: end,
+      start: hhmm(hour),
+      end: hhmm(end),
+      label: `${String(hour).padStart(2, "0")}–${String(end).padStart(2, "0")}`,
+    });
+  }
+  return slots;
+})();
+
+/** Lịch bận demo (khóa / đã giữ). Deterministic — không phải lịch thật. */
+export function isRoomSlotBusy(roomId: string, slotId: string, dateIso: string): boolean {
+  let hash = 0;
+  const key = `${roomId}|${slotId}|${dateIso}`;
+  for (let i = 0; i < key.length; i += 1) hash = (hash * 33 + key.charCodeAt(i)) >>> 0;
+  const startHour = Number(slotId.slice(0, 2));
+  const peak = startHour >= 17;
+  return (hash + startHour * 7) % (peak ? 3 : 5) === 0;
 }
