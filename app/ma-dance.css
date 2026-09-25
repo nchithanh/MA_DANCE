@@ -1137,19 +1137,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   width:var(--content-w);margin:0 auto 1.75rem;text-align:center;
 }
 .hscroll-head h2{font-family:var(--display);font-weight:800;font-size:clamp(1.75rem,3.5vw,2.6rem);letter-spacing:-.02em;text-transform:none;line-height:1.15}
-.hscroll-hint{display:none}
+.hscroll-hint{
+  display:block;
+  margin:.55rem 0 0;
+  font-size:var(--text-caption);
+  color:var(--muted);
+}
 .hscroll-track{
-  display:flex;flex-wrap:wrap;justify-content:center;
-  gap:1.25rem;
-  width:var(--content-w);max-width:100%;
-  margin-inline:auto;
-  padding:0 0 1rem;
+  display:flex;
+  flex-wrap:nowrap;
+  gap:1.15rem;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x;
+  width:100%;
+  padding:0 max(4vw,calc((100% - min(1280px,92vw)) / 2)) 1rem;
 }
 .hscroll-card{
-  flex:0 1 15rem;
-  width:15rem;
-  max-width:100%;
+  flex:0 0 min(16.5rem,78vw);
+  width:min(16.5rem,78vw);
+  scroll-snap-align:start;
   background:var(--card);border:1px solid var(--border);
+  border-radius:10px;
   padding:1.75rem 1.5rem;display:flex;flex-direction:column;
   transition:border-color .3s;
 }
