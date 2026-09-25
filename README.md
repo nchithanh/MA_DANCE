@@ -10,10 +10,24 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Official partner: **The New Gene Show** — fixed **top bar** + splash + `#partner` — copy: *MA Dance Studio – đối tác vũ đạo & luyện tập chính thức của The New Gene 2026* → https://thenewgene.vn/
 - Trust / milestones: `#milestones` — dark editorial **bento** with photo tiles.
 - Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
-- Hero: split layout — copy trái / video YouTube phải (stack trên mobile).
+- Type scale (hạ ~10%): section label `1.125rem` · title `2.65rem` · body `.9375rem`. `#about` / `#impact` manifesto. Display token cho partner / page h1.
+- Hero: YouTube full-bleed nền (`_sC66dTpGMw`, mute/loop, không control) + overlay canh giữa: logo MA phía trên, 2 dòng title. Sticky pin — section số liệu kéo đè lên hero khi scroll.
+- Homepage: `#about` (kiểu MMusic) gộp intro + 8 số liệu count-up (3 CN · 14+ phòng · 12+ styles · 8 buổi · 50+ lớp · 1K+ HV · 4+ cộng tác · 1 đã tài trợ) + marquee styles. Tiếp: partner · milestones · clients · services…
+- `#live`: card text + ảnh → TikTok `@madancestudio/live` (web hoặc app).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
-- Contact / booking CTAs → Google Form https://forms.gle/LUyZiNv2F3Hnu499A (Summer Deal / đăng ký lớp).
+- Contact / booking CTAs → `/enroll/` · `/book-room/` · `/events/` (form lead trên site). Không CRM.
+- Catalog demo (`lib/discovery-data.ts`): ~20 khóa · 14 phòng / 3 CN — **không** khóa số lượng discovery; admin thêm sau. Giá gói / thuê giờ: Liên hệ. Số liệu `#impact` là placeholder.
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
+
+## Lead pages
+
+| Route | Mục đích |
+| --- | --- |
+| `/classes/` | Catalog khóa + lọc |
+| `/enroll/` | Đăng ký học |
+| `/packages/` | Gói 1 / 3 / 6 / 12 tháng |
+| `/rooms/` · `/book-room/` | Catalog phòng + đặt phòng |
+| `/events/` | Brief biên đạo |
 
 ## Run
 

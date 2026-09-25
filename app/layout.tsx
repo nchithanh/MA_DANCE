@@ -10,9 +10,9 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "MA Dance Studio — Học nhảy K-Pop",
+  title: "MA Dance Studio — Khóa tháng · Thuê phòng · Biên đạo",
   description:
-    "MA Dance Studio — Trung tâm dạy nhảy K-Pop & cho thuê phòng tập. One-day class, choreography hot trend, cộng đồng dancer năng lượng cao.",
+    "MA Dance Studio — đăng ký khóa 8 buổi/tháng, thuê phòng 3 chi nhánh, biên đạo sự kiện. Form giữ chỗ · xác nhận Zalo.",
 };
 
 export default function RootLayout({
