@@ -12,7 +12,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
 - Type scale (hạ ~10%): section label `1.125rem` · title `2.65rem` · body `.9375rem`. `#about` / `#impact` manifesto. Display token cho partner / page h1.
 - Hero: YouTube full-bleed nền (`_sC66dTpGMw`, mute/loop, không control) + overlay canh giữa: logo MA phía trên, 2 dòng title. Sticky pin — section số liệu kéo đè lên hero khi scroll.
-- Homepage: `#about` (kiểu MMusic) gộp intro + 8 số liệu count-up (3 CN · 14+ phòng · 12+ styles · 8 buổi · 50+ lớp · 1K+ HV · 4+ cộng tác · 1 đã tài trợ) + marquee styles. Tiếp: partner · milestones · clients · services…
+- Homepage (rút gọn): hero (Đăng ký học + Thuê phòng) → about + 3 đường đi + 4 số liệu (3 CN · 14+ phòng · 12+ styles · 8 buổi) → partner + clients → milestones → services → styles/level → giảng viên → gói (giá: Liên hệ) → gallery 3 CN → livestream / lịch live → chi nhánh → FAQ → contact. Lịch demo / social / teaser phòng gỡ khỏi home.
 - `#live`: card text + ảnh → TikTok `@madancestudio/live` (web hoặc app).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
 - Contact / booking CTAs → `/enroll/` · `/book-room/` · `/events/` (form lead trên site). Không CRM.

@@ -659,7 +659,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero-line2{display:block}
 .hero-sub{max-width:40em;margin-bottom:1.6rem;display:flex;flex-direction:column;gap:.45rem}
 .hero-sub p{margin:0;font-size:var(--text-body);font-weight:500;letter-spacing:var(--track-body);color:rgba(255,255,255,.78);line-height:var(--lh-body)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:1.5rem}
 .scroll-hint{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.2em;color:rgba(255,255,255,.62)}
 .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,transparent,var(--white));animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.25;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
@@ -1185,11 +1185,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* INSTRUCTORS */
 .instructors{padding:4.75rem 0;background:var(--bg)}
 .instructors .section-head{text-align:center}
-.instructors .snap-slider{display:flex;justify-content:center}
+.instructors__hslide{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+}
+.instructors__slider.snap-slider{
+  display:block;
+  width:100%;
+  margin-left:0;
+  overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+}
 .instructors .snap-track{
-  width:max-content;
-  max-width:100%;
-  margin-inline:auto;
+  display:flex;gap:1.15rem;
+  width:max-content;min-width:100%;max-width:none;
+  margin:0;justify-content:center;
+  padding:0 max(1.25rem,4vw) .5rem;
+  overflow:visible;
 }
 .inst-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
 .inst-card{background:var(--card);border:1px solid var(--border);overflow:hidden;transition:transform .35s,border-color .35s,box-shadow .35s}
@@ -1207,6 +1219,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .inst-info{padding:1.05rem 1.15rem 1.25rem}
 .inst-info h3{font-family:var(--display);font-size:1.35rem;letter-spacing:.04em}
 .inst-info p{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.inst-bio{margin-top:.4rem!important;color:rgba(255,255,255,.62)!important;line-height:1.4}
+.inst-card{transition:transform .25s ease}
+.inst-card:hover{transform:translateY(-.2rem)}
+.style-card{transition:transform .25s ease}
+.style-card:hover{transform:translateY(-.2rem)}
+.hscroll-card{transition:transform .25s ease,border-color .25s}
+.hscroll-card:hover{transform:translateY(-.15rem)}
+.price-card{transition:transform .25s ease,border-color .25s}
+.price-card:hover{transform:translateY(-.15rem)}
 
 /* PRICING */
 .pricing{padding:4.75rem 0;background:var(--bg2)}
@@ -1224,6 +1245,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* GALLERY */
 .gallery{padding:5rem 0 4rem;background:var(--bg);overflow:hidden}
+.gallery__cta{margin:.9rem 0 0;text-align:center}
+.hslide{position:relative}
+.hslide__btn{
+  display:none;align-items:center;justify-content:center;
+  position:absolute;top:50%;z-index:3;transform:translateY(-50%);
+  width:2.5rem;height:2.5rem;border-radius:10px;
+  border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.55);
+  color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;
+}
+.hslide__btn--prev{left:max(.75rem,2vw)}
+.hslide__btn--next{right:max(.75rem,2vw)}
+.hslide__btn[hidden]{display:none}
+@media (min-width:1024px) and (hover:hover) and (pointer:fine){
+  .hslide__btn{display:flex}
+  .hslide__btn[hidden]{display:none}
+}
 .gal-track{display:flex;gap:1rem;overflow-x:auto;padding:0 max(4vw,calc((100vw - 1280px)/2)) 1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .gal-item{
   flex:0 0 min(20rem,75vw);scroll-snap-align:start;
@@ -1617,6 +1654,12 @@ body.gal-open{overflow:hidden}
   }
   .bottom-bar.is-open .bottom-bar__menu span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
   .bottom-bar.is-open .bottom-bar__menu span:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
+  .bottom-bar__zalo{
+    position:absolute;right:6.5rem;top:50%;transform:translateY(-50%);
+    font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:10px;
+    padding:.4rem .75rem;
+  }
   .bottom-bar__booking{
     font-size:.85rem;font-weight:800;letter-spacing:.28em;
     text-transform:uppercase;color:#fff;
@@ -1834,7 +1877,7 @@ body.gal-open{overflow:hidden}
 
 /* ===== MMusic-inspired layout layer ===== */
 
-#impact,#about,#services,#live,#facilities,#instructors,#contact{scroll-margin-top:calc(var(--h) + var(--top-bar) + .75rem)}
+#impact,#about,#services,#pricing,#gallery,#live,#instructors,#branches,#contact{scroll-margin-top:calc(var(--h) + var(--top-bar) + .75rem)}
 .impact{
   position:relative;
   z-index:2;
