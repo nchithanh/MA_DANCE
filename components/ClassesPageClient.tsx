@@ -2,15 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { BookingCta } from "@/components/BookingCta";
-import { branchName, branches, courses, midEnroll } from "@/lib/discovery-data";
+import { branchName, midEnroll } from "@/lib/discovery-data";
+import { useSiteData } from "@/lib/use-site-data";
 
 export function ClassesPageClient() {
+  const { data } = useSiteData();
+  const { courses, branches } = data;
   const [branch, setBranch] = useState("");
   const [level, setLevel] = useState("");
   const [style, setStyle] = useState("");
   const styles = useMemo(
     () => [...new Set(courses.map((c) => c.style))].sort(),
-    [],
+    [courses],
   );
   const list = courses.filter(
     (c) =>
@@ -74,7 +77,7 @@ export function ClassesPageClient() {
               <div className="ma-chips">
                 <span>{c.style}</span>
                 <span>{c.level}</span>
-                <span>{branchName(c.branch)}</span>
+                <span>{branchName(c.branch, branches)}</span>
                 {full ? <span className="is-full">Full</span> : null}
                 {c.midOpen && !full ? <span className="is-mid">Nhận giữa khóa</span> : null}
               </div>

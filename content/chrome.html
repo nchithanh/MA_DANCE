@@ -102,6 +102,25 @@
         <div class="mobile-menu__meta">
           <a href="/#faq">FAQ</a>
         </div>
+        <div class="mobile-menu__auth" id="mobileAuth">
+          <button type="button" class="mobile-menu__login-toggle" id="mobileLoginToggle" data-i18n="menu.login">Login</button>
+          <form class="mobile-menu__login" id="mobileLoginForm" hidden>
+            <label>
+              <span data-i18n="menu.user">Tài khoản</span>
+              <input name="user" type="text" autocomplete="username" required />
+            </label>
+            <label>
+              <span data-i18n="menu.pass">Mật khẩu</span>
+              <input name="pass" type="password" autocomplete="current-password" required />
+            </label>
+            <p class="mobile-menu__login-err" id="mobileLoginErr" hidden data-i18n="menu.loginErr">Sai tài khoản hoặc mật khẩu.</p>
+            <button type="submit" class="btn btn-primary btn-full" data-i18n="menu.loginGo">Vào</button>
+          </form>
+          <div class="mobile-menu__auth-in" id="mobileAuthIn" hidden>
+            <a href="/admin/" class="mobile-menu__admin" data-i18n="menu.admin">Admin</a>
+            <button type="button" id="mobileLogout" data-i18n="menu.logout">Đăng xuất</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

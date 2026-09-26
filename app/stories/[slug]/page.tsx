@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
+import { StoryDetailClient } from "@/components/StoryDetailClient";
 import { mediaUrl } from "@/lib/media";
-import { STORIES, formatStoryDate, getStory } from "@/lib/stories";
+import { STORIES, getStory } from "@/lib/stories";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -42,41 +42,7 @@ export default async function StoryDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <article className="story-detail">
-        <nav className="story-crumb" aria-label="Breadcrumb">
-          <Link href="/stories/">Stories</Link>
-          <span aria-hidden="true"> / </span>
-          <span>{story.title}</span>
-        </nav>
-        <p className="story-detail__meta">
-          <time dateTime={story.date}>{formatStoryDate(story.date)}</time>
-          <span> · {story.kindLabel}</span>
-        </p>
-        <div className="story-detail__hero-wrap">
-          <img
-            className="story-detail__hero"
-            src={mediaUrl(story.image)}
-            alt={story.imageAlt}
-            width={960}
-            height={600}
-          />
-        </div>
-        {story.body.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
-        {story.watchHref ? (
-          <p className="story-detail__watch">
-            <a
-              className="btn btn-primary"
-              href={story.watchHref}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {story.watchLabel}
-            </a>
-          </p>
-        ) : null}
-      </article>
+      <StoryDetailClient slug={slug} fallback={story} />
     </MarketingSubpage>
   );
 }

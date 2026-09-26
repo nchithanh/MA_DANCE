@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { BookingCta } from "@/components/BookingCta";
-import { STUDIO_SLOTS, branches, isRoomSlotBusy } from "@/lib/discovery-data";
+import { STUDIO_SLOTS, isRoomSlotBusy } from "@/lib/discovery-data";
 import { mediaUrl } from "@/lib/media";
+import { useSiteData } from "@/lib/use-site-data";
 
 const DAY_LABELS = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
 
@@ -30,6 +31,8 @@ function buildDays(count = 7) {
 }
 
 export function RoomsPageClient() {
+  const { data } = useSiteData();
+  const { branches } = data;
   const days = useMemo(() => buildDays(7), []);
   const [dateIso, setDateIso] = useState(days[0]?.iso ?? isoLocal(new Date()));
 

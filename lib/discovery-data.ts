@@ -1,13 +1,52 @@
 /** Demo catalog seed — admin có thể thêm/sửa sau. Không khóa số lượng theo discovery. Giá = Liên hệ. */
 export type BranchId = "q10" | "q3" | "pn";
 
+export type Room = {
+  id: string;
+  name: string;
+  size: string;
+  photo: string;
+};
+
+export type Branch = {
+  id: BranchId;
+  name: string;
+  address: string;
+  rooms: Room[];
+  note: string;
+};
+
+export type Course = {
+  id: string;
+  style: string;
+  level: string;
+  branch: BranchId;
+  schedule: string;
+  teacher: string;
+  start: string;
+  end: string;
+  seats: number;
+  cap: number;
+  midOpen: boolean;
+};
+
+export type Package = {
+  id: string;
+  tag: string;
+  title: string;
+  sessions: string;
+  hold: string;
+  deposit: string;
+  featured: boolean;
+};
+
 export const MA_PHONE = "0764669969";
 export const MA_PHONE_DISPLAY = "076 466 9969";
 export const MA_ZALO = "https://zalo.me/0764669969";
 /** Optional external form (Summer Deal) — giữ làm kênh phụ. */
 export const MA_GOOGLE_FORM = "https://forms.gle/LUyZiNv2F3Hnu499A";
 
-export const branches = [
+export const branches: Branch[] = [
   {
     id: "q10" as const,
     name: "Quận 10",
@@ -54,7 +93,7 @@ export const midEnroll = [
   { level: "Advance", rule: "Nhận buổi 1 & buổi 5" },
 ];
 
-export const packages = [
+export const packages: Package[] = [
   {
     id: "1m",
     tag: "Cơ bản",
@@ -93,7 +132,7 @@ export const packages = [
   },
 ];
 
-export const courses = [
+export const courses: Course[] = [
   {
     id: "kp-begin-q10",
     style: "K-Pop",
@@ -360,8 +399,8 @@ export function countRooms() {
   return branches.reduce((n, b) => n + b.rooms.length, 0);
 }
 
-export function branchName(id: BranchId) {
-  return branches.find((b) => b.id === id)?.name ?? id;
+export function branchName(id: BranchId, list: Branch[] = branches) {
+  return list.find((b) => b.id === id)?.name ?? id;
 }
 
 function hhmm(hour: number) {

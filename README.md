@@ -18,7 +18,9 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Footer: Studio · Tham gia · Liên hệ (3 CN, Zalo, giờ T2–CN 09:00–22:00, YT/TT/FB).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
 - Contact / booking CTAs (tạm) → [Google Form](https://forms.gle/LUyZiNv2F3Hnu499A) (`target="_blank"`). Catalog `/classes/` · `/packages/` · `/rooms/` vẫn xem trên site. Zalo / tel / social giữ nguyên. Không CRM.
-- Catalog demo (`lib/discovery-data.ts`): ~20 khóa · 14 phòng / 3 CN — **không** khóa số lượng discovery; admin thêm sau. Giá gói / thuê giờ: Liên hệ. Số liệu `#impact` là placeholder.
+- Catalog demo (`lib/discovery-data.ts`): ~20 khóa · 14 phòng / 3 CN. `/admin/` sửa overlay (`localStorage`) — `/classes/` `/rooms/` `/packages/` `/stories/` đọc overlay trên máy đó. Homepage HTML chưa sửa qua admin. Giá gói / thuê giờ: Liên hệ. Số liệu `#impact` là placeholder.
+- Login tạm (client-side, **không** bảo mật production): user/pass trong `lib/admin-auth.ts`. Menu mobile → Login → Admin. Session: `sessionStorage`.
+- D1 `ma_website`: schema + seed trong `d1/schema.sql`. Worker API: `workers/ma-website/` (`ma-website`). Site / `/admin` **chưa** gọi Worker.
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
 
 ## Lead pages
@@ -31,6 +33,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 | `/rooms/` · `/book-room/` | 3 hàng CN · ảnh + slot trống/bận demo · Book Now → Google Form |
 | `/events/` | Brief biên đạo → Google Form |
 | `/stories/` · `/stories/[slug]/` | Clip / case studio (SEO) |
+| `/admin/` | Admin catalog (login tạm) — data `localStorage` trên máy đó |
 
 ## Run
 
@@ -49,6 +52,18 @@ npm run build                 # → out/
 GITHUB_PAGES=true npm run build  # basePath /MA_DANCE for GitHub Pages
 ```
 
+## Worker API (D1)
+
+Source: `workers/ma-website/` (cùng layout `workers/leads/`).
+
+```bash
+cd workers/ma-website
+npx wrangler secret put ADMIN_TOKEN
+npx wrangler deploy
+```
+
+Chi tiết route: `workers/ma-website/README.md`.
+
 ## Deploy
 
 - Repo: [nchithanh/MA_DANCE](https://github.com/nchithanh/MA_DANCE)
@@ -60,6 +75,7 @@ GITHUB_PAGES=true npm run build  # basePath /MA_DANCE for GitHub Pages
 
 - Next.js 16 (App Router) · React 19 · static `output: "export"`
 - Fonts: Be Vietnam Pro (Google Fonts · vietnamese)
+- Cloudflare D1 `ma_website` + Worker `workers/ma-website/` (`ma-website`). `/admin` FE chưa nối API.
 
 ## Template source
 
