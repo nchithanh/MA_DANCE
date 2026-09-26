@@ -15,7 +15,7 @@ export default function RoomsPage() {
     <MarketingSubpage
       label="Thuê phòng"
       title={`${roomTotal} phòng · 3 chi nhánh`}
-      lead="3 chi nhánh · mỗi hàng một CN. Xem ảnh phòng và khung giờ trống / bận — bấm Book Now để gửi form."
+      lead="3 chi nhánh · mỗi hàng một CN. Xem ảnh phòng và khung giờ trống / bận — bấm Book Now để mở form."
     >
       <RoomsPageClient />
     </MarketingSubpage>

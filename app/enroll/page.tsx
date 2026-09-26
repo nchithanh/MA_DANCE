@@ -13,7 +13,7 @@ export default function EnrollPage() {
     <MarketingSubpage
       label="Đăng ký học"
       title="Ghi danh khóa tháng"
-      lead="Gửi form → team MA xác nhận Zalo. Điểm danh trừ buổi · không học bù. Form không đồng nghĩa đã vào lớp."
+      lead="Mở form Google chính thức → team MA xác nhận Zalo. Điểm danh trừ buổi · không học bù. Form không đồng nghĩa đã vào lớp."
     >
       <Suspense fallback={<p>Đang tải…</p>}>
         <EnrollPageClient />

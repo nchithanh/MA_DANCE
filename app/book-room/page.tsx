@@ -13,7 +13,7 @@ export default function BookRoomPage() {
     <MarketingSubpage
       label="Đặt phòng"
       title="Thuê studio theo giờ"
-      lead="Chọn CN · phòng · khung giờ. Staff check conflict với lịch khóa. Giá/giờ: Liên hệ."
+      lead="Mở form Google chính thức. Staff check conflict với lịch khóa. Giá/giờ: Liên hệ."
     >
       <Suspense fallback={<p>Đang tải…</p>}>
         <BookRoomPageClient />

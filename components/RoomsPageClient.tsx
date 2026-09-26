@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { BookingCta } from "@/components/BookingCta";
 import { STUDIO_SLOTS, branches, isRoomSlotBusy } from "@/lib/discovery-data";
 import { mediaUrl } from "@/lib/media";
 
@@ -27,20 +27,6 @@ function buildDays(count = 7) {
       date: `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}`,
     };
   });
-}
-
-function bookHref(
-  branchId: string,
-  roomId: string,
-  dateIso: string,
-  slot?: (typeof STUDIO_SLOTS)[number],
-) {
-  const q = new URLSearchParams({ branch: branchId, room: roomId, date: dateIso, hours: "2" });
-  if (slot) {
-    q.set("start", slot.start);
-    q.set("end", slot.end);
-  }
-  return `/book-room/?${q.toString()}`;
 }
 
 export function RoomsPageClient() {
@@ -114,20 +100,17 @@ export function RoomsPageClient() {
                         }
                         return (
                           <li key={slot.id}>
-                            <Link
+                            <BookingCta
                               className="ma-slot is-free"
-                              href={bookHref(b.id, r.id, dateIso, slot)}
                               title={`${slot.start}–${slot.end} — trống, đặt lịch`}
                             >
                               {slot.label}
-                            </Link>
+                            </BookingCta>
                           </li>
                         );
                       })}
                     </ol>
-                    <Link className="ma-room-book" href={bookHref(b.id, r.id, dateIso)}>
-                      Book Now
-                    </Link>
+                    <BookingCta className="ma-room-book">Book Now</BookingCta>
                   </div>
                 </article>
               );

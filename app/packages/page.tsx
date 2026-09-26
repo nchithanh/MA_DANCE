@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { BookingCta } from "@/components/BookingCta";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { packages } from "@/lib/discovery-data";
 
@@ -30,12 +30,11 @@ export default function PackagesPage() {
               <li>{p.deposit}</li>
               <li>Điểm danh trừ buổi · không học bù</li>
             </ul>
-            <Link
-              href={`/enroll/?package=${p.id}`}
+            <BookingCta
               className={`btn btn-full ${p.featured ? "btn-primary" : "btn-ghost"}`}
             >
               Đăng ký gói
-            </Link>
+            </BookingCta>
           </article>
         ))}
       </div>

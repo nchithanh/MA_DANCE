@@ -17,7 +17,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - `#stories` + `/stories/` · `/stories/[slug]/`: TikTok / YouTube / case (Cover night, Class recap, The New Gene, 3 CN). Không bịa metric.
 - Footer: Studio · Tham gia · Liên hệ (3 CN, Zalo, giờ T2–CN 09:00–22:00, YT/TT/FB).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
-- Contact / booking CTAs → `/enroll/` · `/book-room/` · `/events/` (form lead trên site). Không CRM.
+- Contact / booking CTAs (tạm) → [Google Form](https://forms.gle/LUyZiNv2F3Hnu499A) (`target="_blank"`). Catalog `/classes/` · `/packages/` · `/rooms/` vẫn xem trên site. Zalo / tel / social giữ nguyên. Không CRM.
 - Catalog demo (`lib/discovery-data.ts`): ~20 khóa · 14 phòng / 3 CN — **không** khóa số lượng discovery; admin thêm sau. Giá gói / thuê giờ: Liên hệ. Số liệu `#impact` là placeholder.
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
 
@@ -26,10 +26,10 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 | Route | Mục đích |
 | --- | --- |
 | `/classes/` | Catalog khóa + lọc |
-| `/enroll/` | Đăng ký học |
-| `/packages/` | Gói 1 / 3 / 6 / 12 tháng |
-| `/rooms/` · `/book-room/` | 3 hàng CN · ảnh + slot trống/bận demo → form đặt phòng |
-| `/events/` | Brief biên đạo |
+| `/enroll/` | Đăng ký học → mở Google Form |
+| `/packages/` | Gói 1 / 3 / 6 / 12 tháng · CTA form |
+| `/rooms/` · `/book-room/` | 3 hàng CN · ảnh + slot trống/bận demo · Book Now → Google Form |
+| `/events/` | Brief biên đạo → Google Form |
 | `/stories/` · `/stories/[slug]/` | Clip / case studio (SEO) |
 
 ## Run

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { BookingCta } from "@/components/BookingCta";
 import { branchName, branches, courses, midEnroll } from "@/lib/discovery-data";
 
 export function ClassesPageClient() {
@@ -91,9 +91,9 @@ export function ClassesPageClient() {
                 <span>
                   {c.seats}/{c.cap} HV
                 </span>
-                <Link className="btn btn-primary btn-sm" href={`/enroll/?course=${c.id}`}>
+                <BookingCta className="btn btn-primary btn-sm">
                   {full ? "Hỏi khung khác" : "Đăng ký"}
-                </Link>
+                </BookingCta>
               </div>
             </article>
           );
