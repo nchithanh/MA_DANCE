@@ -15,12 +15,21 @@ export const metadata: Metadata = {
     "MA Dance Studio — đăng ký khóa 8 buổi/tháng, thuê phòng 3 chi nhánh, biên đạo sự kiện. Form giữ chỗ · xác nhận Zalo.",
 };
 
+const logoHref = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.png`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi" className={beVietnam.variable}>
-      <body className={beVietnam.className}>{children}</body>
+      <body className={beVietnam.className}>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `:root{--ma-logo:url("${logoHref}")}`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

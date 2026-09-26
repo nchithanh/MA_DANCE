@@ -12,8 +12,10 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
 - Type scale (hạ ~10%): section label `1.125rem` · title `2.65rem` · body `.9375rem`. `#about` / `#impact` manifesto. Display token cho partner / page h1.
 - Hero: YouTube full-bleed nền (`_sC66dTpGMw`, mute/loop, không control) + overlay canh giữa: logo MA phía trên, 2 dòng title. Sticky pin — section số liệu kéo đè lên hero khi scroll.
-- Homepage (rút gọn): hero (Đăng ký học + Thuê phòng) → about + 3 đường đi + 4 số liệu (3 CN · 14+ phòng · 12+ styles · 8 buổi) → partner + clients → milestones → services → styles/level → giảng viên → gói (giá: Liên hệ) → gallery 3 CN → livestream / lịch live → chi nhánh → FAQ → contact. Lịch demo / social / teaser phòng gỡ khỏi home.
-- `#live`: card text + ảnh → TikTok `@madancestudio/live` (web hoặc app).
+- Homepage (rút gọn): hero (Đăng ký học + Thuê phòng) → about + 3 đường đi + 4 số liệu (3 CN · 14+ phòng · 12+ styles · 8 buổi) → partner + clients → milestones → services → styles/level → giảng viên → gói (giá: Liên hệ) → gallery 3 CN → livestream (1 lớn + 3 nhỏ) → `#stories` teaser → chi nhánh → FAQ → contact.
+- `#live`: news board — live now trái, 3 lịch live phải → TikTok `@madancestudio/live`.
+- `#stories` + `/stories/` · `/stories/[slug]/`: TikTok / YouTube / case (Cover night, Class recap, The New Gene, 3 CN). Không bịa metric.
+- Footer: Studio · Tham gia · Liên hệ (3 CN, Zalo, giờ T2–CN 09:00–22:00, YT/TT/FB).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
 - Contact / booking CTAs → `/enroll/` · `/book-room/` · `/events/` (form lead trên site). Không CRM.
 - Catalog demo (`lib/discovery-data.ts`): ~20 khóa · 14 phòng / 3 CN — **không** khóa số lượng discovery; admin thêm sau. Giá gói / thuê giờ: Liên hệ. Số liệu `#impact` là placeholder.
@@ -28,6 +30,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 | `/packages/` | Gói 1 / 3 / 6 / 12 tháng |
 | `/rooms/` · `/book-room/` | 3 hàng CN · ảnh + slot trống/bận demo → form đặt phòng |
 | `/events/` | Brief biên đạo |
+| `/stories/` · `/stories/[slug]/` | Clip / case studio (SEO) |
 
 ## Run
 
