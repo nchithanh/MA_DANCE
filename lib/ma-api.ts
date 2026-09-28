@@ -114,8 +114,14 @@ function mapStory(raw: Record<string, unknown>): Story {
   };
 }
 
+function apiFetchInit(): RequestInit {
+  // Static export cannot prerender a page that used cache: "no-store".
+  if (typeof window === "undefined") return { cache: "force-cache" };
+  return { cache: "no-store" };
+}
+
 export async function fetchCatalog(): Promise<Catalog> {
-  const res = await fetch(`${MA_API_URL}/api/catalog`, { cache: "no-store" });
+  const res = await fetch(`${MA_API_URL}/api/catalog`, apiFetchInit());
   if (!res.ok) throw new Error(`catalog_${res.status}`);
   const raw = (await res.json()) as Record<string, unknown>;
   if (
@@ -142,13 +148,13 @@ export async function fetchCatalog(): Promise<Catalog> {
 }
 
 export async function fetchHomepage(): Promise<Homepage> {
-  const res = await fetch(`${MA_API_URL}/api/homepage`, { cache: "no-store" });
+  const res = await fetch(`${MA_API_URL}/api/homepage`, apiFetchInit());
   if (!res.ok) throw new Error(`homepage_${res.status}`);
   return parseHomepage(await res.json());
 }
 
 export async function fetchSeo(): Promise<SeoDoc> {
-  const res = await fetch(`${MA_API_URL}/api/seo`, { cache: "no-store" });
+  const res = await fetch(`${MA_API_URL}/api/seo`, apiFetchInit());
   if (!res.ok) throw new Error(`seo_${res.status}`);
   return parseSeo(await res.json());
 }
