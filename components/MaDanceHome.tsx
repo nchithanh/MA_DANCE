@@ -65,7 +65,7 @@ export function MaDanceHome({ html }: Props) {
       };
 
       apply(getMaDanceLang());
-      onMaLanguageChange((lang) => {
+      onMaLanguageChange((lang: string) => {
         if (cancelled) return;
         apply(lang);
       });
