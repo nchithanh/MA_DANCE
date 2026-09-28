@@ -3,7 +3,7 @@ import { AdminApp } from "@/components/AdminApp";
 
 export const metadata: Metadata = {
   title: "Admin — MA Dance Studio",
-  description: "Quản lý catalog MA Dance trên máy này.",
+  description: "Admin catalog MA Dance — GET/ghi Worker ma-website.",
   robots: { index: false, follow: false },
 };
 

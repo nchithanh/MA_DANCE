@@ -2023,6 +2023,9 @@ body.gal-open{overflow:hidden}
 .ma-chips .is-mid{color:#8f8;border-color:rgba(120,200,120,.4)}
 .ma-course-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:.75rem;padding-top:.4rem}
 .ma-empty{text-align:center;color:#888;padding:2rem}
+.price-grid .ma-empty,
+.stories-board .ma-empty,
+.br-grid .ma-empty{grid-column:1 / -1}
 .ma-steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;padding:0;margin:0 0 1.75rem;counter-reset:s}
 .ma-steps li{counter-increment:s;padding:1rem;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:#121212;font-size:.82rem;color:#aaa}
 .ma-steps li::before{content:counter(s,decimal-leading-zero);display:block;font-weight:800;color:#fff;margin-bottom:.3rem;font-size:.75rem}
@@ -2382,89 +2385,4 @@ body.gal-open{overflow:hidden}
 .contact-form input,.contact-form textarea,.contact-form select,
 .ma-lead-form input,.ma-lead-form textarea,.ma-lead-form select{
   font-size:var(--text-body);
-}
-
-/* Admin console */
-body.ma-admin-open{padding-bottom:0;overflow:auto}
-.ma-admin__boot{padding:2rem;color:#888}
-.ma-admin{
-  min-height:100dvh;
-  display:grid;
-  grid-template-columns:minmax(12rem,14.5rem) 1fr;
-  background:#050505;color:#f2f2f2;
-}
-.ma-admin--gate{grid-template-columns:1fr;place-items:center;padding:1.5rem}
-.ma-admin-login{
-  width:min(22rem,100%);
-  display:grid;gap:.85rem;
-  padding:1.5rem;border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;background:#121212;
-}
-.ma-admin-login h1{font-size:1.6rem;letter-spacing:-.03em}
-.ma-admin-login__lead,
-.ma-admin-login__err{font-size:.82rem;color:#888}
-.ma-admin-login__err{color:#ff8a8a}
-.ma-admin-login label{display:grid;gap:.35rem;font-size:.78rem;color:#888}
-.ma-admin-login input,
-.ma-admin-card input,
-.ma-admin-card select,
-.ma-admin-card textarea{
-  font:inherit;padding:.7rem .85rem;border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);background:#0a0a0a;color:#f2f2f2;
-}
-.ma-admin-login__back{text-align:center;font-size:.8rem;color:#888}
-.ma-admin__side{
-  display:flex;flex-direction:column;gap:1rem;
-  padding:1.2rem 1rem;border-right:1px solid rgba(255,255,255,.1);
-  background:#0b0b0b;
-}
-.ma-admin__brand{
-  font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-}
-.ma-admin__tabs{display:grid;gap:.4rem}
-.ma-admin__tabs button{
-  text-align:left;padding:.7rem .8rem;border-radius:10px;
-  border:1px solid transparent;color:rgba(255,255,255,.7);
-}
-.ma-admin__tabs button.is-active{
-  background:#fff;color:#000;font-weight:700;
-}
-.ma-admin__side-foot{margin-top:auto;display:grid;gap:.45rem}
-.ma-admin__side-foot a,
-.ma-admin__side-foot button{
-  font-size:.78rem;color:rgba(255,255,255,.6);text-align:left;
-}
-.ma-admin__main{padding:1.2rem 1.3rem 2.5rem;min-width:0}
-.ma-admin__bar{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:.8rem;margin-bottom:.65rem;
-}
-.ma-admin__bar h1{font-size:1.45rem;letter-spacing:-.03em}
-.ma-admin__bar-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
-.ma-admin__status{font-size:.78rem;color:#9ad59a}
-.ma-admin__hint{font-size:.8rem;color:#888;margin-bottom:1rem}
-.ma-admin-list{display:grid;gap:1rem}
-.ma-admin-card{
-  padding:1rem;border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;background:#121212;display:grid;gap:.85rem;
-}
-.ma-admin-card h2{font-size:1.05rem}
-.ma-admin-grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;
-}
-.ma-admin-grid--room{align-items:end}
-.ma-admin-span{grid-column:1/-1}
-.ma-admin-card label{display:grid;gap:.3rem;font-size:.75rem;color:#888}
-.ma-admin-check{
-  flex-direction:row;align-items:center;grid-template-columns:auto 1fr;
-}
-.ma-admin-del{
-  justify-self:start;font-size:.75rem;color:#ff8a8a;
-  border-bottom:1px solid rgba(255,138,138,.4);
-}
-@media(max-width:900px){
-  .ma-admin{grid-template-columns:1fr}
-  .ma-admin__side{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
-  .ma-admin__tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .ma-admin-grid{grid-template-columns:1fr}
 }

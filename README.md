@@ -12,15 +12,16 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Brand partners strip: `#clients` — logo marquee (THPT Nguyễn Hữu Thọ · VTV · FPT · Dolphin + SVG fillers).
 - Type scale (hạ ~10%): section label `1.125rem` · title `2.65rem` · body `.9375rem`. `#about` / `#impact` manifesto. Display token cho partner / page h1.
 - Hero: YouTube full-bleed nền (`_sC66dTpGMw`, mute/loop, không control) + overlay canh giữa: logo MA phía trên, 2 dòng title. Sticky pin — section số liệu kéo đè lên hero khi scroll.
-- Homepage (rút gọn): hero (Đăng ký học + Thuê phòng) → about + 3 đường đi + 4 số liệu (3 CN · 14+ phòng · 12+ styles · 8 buổi) → partner + clients → milestones → services → styles/level → giảng viên → gói (giá: Liên hệ) → gallery 3 CN → livestream (1 lớn + 3 nhỏ) → `#stories` teaser → chi nhánh → FAQ → contact.
+- Homepage (rút gọn): hero (Đăng ký học + Thuê phòng) → about + 3 đường đi + số liệu (nhập trên Homepage CMS) → partner + clients → milestones → services → styles/level → giảng viên → gói (Worker) → gallery 3 CN → livestream (1 lớn + 3 nhỏ) → `#stories` teaser (Worker) → chi nhánh (Worker) → FAQ → contact.
 - `#live`: news board — live now trái, 3 lịch live phải → TikTok `@madancestudio/live`.
 - `#stories` + `/stories/` · `/stories/[slug]/`: TikTok / YouTube / case (Cover night, Class recap, The New Gene, 3 CN). Không bịa metric.
 - Footer: Studio · Tham gia · Liên hệ (3 CN, Zalo, giờ T2–CN 09:00–22:00, YT/TT/FB).
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
 - Contact / booking CTAs (tạm) → [Google Form](https://forms.gle/LUyZiNv2F3Hnu499A) (`target="_blank"`). Catalog `/classes/` · `/packages/` · `/rooms/` vẫn xem trên site. Zalo / tel / social giữ nguyên. Không CRM.
-- Catalog demo (`lib/discovery-data.ts`): ~20 khóa · 14 phòng / 3 CN. `/admin/` sửa overlay (`localStorage`) — `/classes/` `/rooms/` `/packages/` `/stories/` đọc overlay trên máy đó. Homepage HTML chưa sửa qua admin. Giá gói / thuê giờ: Liên hệ. Số liệu `#impact` là placeholder.
-- Login tạm (client-side, **không** bảo mật production): user/pass trong `lib/admin-auth.ts`. Menu mobile → Login → Admin. Session: `sessionStorage`.
-- D1 `ma_website`: schema + seed trong `d1/schema.sql`. Worker API: `workers/ma-website/` (`ma-website`). Site / `/admin` **chưa** gọi Worker.
+- Catalog public (`/classes/` `/packages/` `/rooms/` `/stories/` **và homepage** `#pricing` `#stories` `#branches`): `GET` Worker `ma-website` `/api/catalog` — **không** fallback seed TS / HTML cứng / `localStorage`. Worker down → khối đó báo lỗi / trống. Giá gói / thuê giờ: Liên hệ. `#impact` nhập trên Homepage CMS (số + nhãn, thêm/xóa tự do) — không lấy từ catalog.
+- Login admin: `admin` / `ma@2026` → Worker tạo session token (D1, 7 ngày). Sidebar **Trang chủ** (Homepage CMS VI/EN/KR) + **Catalog** (accordion + chip). Upload ảnh: `POST /api/media` → R2 `website/uploads/`, URL Worker ghi thẳng vào draft. Overlay khi đăng nhập / lưu / tải lại / upload. GET + Lưu qua API.
+- Homepage CMS: `GET /api/homepage` (public) · `PUT /api/homepage` (session). D1 `site_meta.key=homepage`. Worker down → section trống/lỗi, không fallback HTML. Nav / footer vẫn i18n runtime.
+- D1 `ma_website` + R2 `ma-website` + Worker `https://ma-website.nchithanh9999.workers.dev`. Override: `NEXT_PUBLIC_MA_API_URL`. User/pass mặc định `admin` / `ma@2026` (hoặc secret `ADMIN_USER` / `ADMIN_PASS`).
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
 
 ## Lead pages
@@ -33,7 +34,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 | `/rooms/` · `/book-room/` | 3 hàng CN · ảnh + slot trống/bận demo · Book Now → Google Form |
 | `/events/` | Brief biên đạo → Google Form |
 | `/stories/` · `/stories/[slug]/` | Clip / case studio (SEO) |
-| `/admin/` | Admin catalog (login tạm) — data `localStorage` trên máy đó |
+| `/admin/` | Admin catalog — login user/pass; session token D1; GET/ghi Worker |
 
 ## Run
 
@@ -74,8 +75,9 @@ Chi tiết route: `workers/ma-website/README.md`.
 ## Stack
 
 - Next.js 16 (App Router) · React 19 · static `output: "export"`
+- Admin `/admin`: Bootstrap 5 (CSS). Site public giữ `app/ma-dance.css`.
 - Fonts: Be Vietnam Pro (Google Fonts · vietnamese)
-- Cloudflare D1 `ma_website` + Worker `workers/ma-website/` (`ma-website`). `/admin` FE chưa nối API.
+- Cloudflare D1 `ma_website` + Worker `ma-website`. Catalog public: `GET /api/catalog`. Admin ghi cùng Worker.
 
 ## Template source
 

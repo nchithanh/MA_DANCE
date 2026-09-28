@@ -13,7 +13,7 @@ export default function ClassesPage() {
     <MarketingSubpage
       label="Khóa học"
       title="Chọn khóa theo chi nhánh & level"
-      lead="Catalog demo — nhiều style / level / khung giờ. Admin thêm khóa sau. Full → gợi ý khung giờ khác."
+      lead="Catalog từ Worker — nhiều style / level / khung giờ. Full → gợi ý khung giờ khác."
     >
       <ClassesPageClient />
     </MarketingSubpage>

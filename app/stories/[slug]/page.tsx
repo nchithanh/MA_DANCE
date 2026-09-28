@@ -2,18 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { StoryDetailClient } from "@/components/StoryDetailClient";
+import { fetchCatalog } from "@/lib/ma-api";
 import { mediaUrl } from "@/lib/media";
-import { STORIES, getStory } from "@/lib/stories";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return STORIES.map((story) => ({ slug: story.slug }));
+export async function generateStaticParams() {
+  const catalog = await fetchCatalog();
+  return catalog.stories.map((story) => ({ slug: story.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const story = getStory(slug);
+  const catalog = await fetchCatalog();
+  const story = catalog.stories.find((item) => item.slug === slug);
   if (!story) return { title: "Stories — MA Dance Studio" };
   return {
     title: `${story.title} — MA Dance Studio`,
@@ -23,7 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StoryDetailPage({ params }: Props) {
   const { slug } = await params;
-  const story = getStory(slug);
+  const catalog = await fetchCatalog();
+  const story = catalog.stories.find((item) => item.slug === slug);
   if (!story) notFound();
 
   const jsonLd = {
@@ -42,7 +45,7 @@ export default async function StoryDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <StoryDetailClient slug={slug} fallback={story} />
+      <StoryDetailClient slug={slug} />
     </MarketingSubpage>
   );
 }

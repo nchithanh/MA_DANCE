@@ -1,10 +1,15 @@
 "use client";
 
 import { BookingCta } from "@/components/BookingCta";
+import { CatalogStatus } from "@/components/CatalogStatus";
 import { useSiteData } from "@/lib/use-site-data";
 
 export function PackagesPageClient() {
-  const { data } = useSiteData();
+  const { data, ready, error } = useSiteData();
+
+  if (!data) {
+    return <CatalogStatus ready={ready} error={error} />;
+  }
 
   return (
     <>

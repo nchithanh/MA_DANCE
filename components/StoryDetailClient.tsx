@@ -1,65 +1,61 @@
 "use client";
 
 import Link from "next/link";
+import { CatalogStatus } from "@/components/CatalogStatus";
 import { mediaUrl } from "@/lib/media";
-import { formatStoryDate, type Story } from "@/lib/stories";
+import { formatStoryDate } from "@/lib/stories";
 import { useSiteData } from "@/lib/use-site-data";
 
-export function StoryDetailClient({
-  slug,
-  fallback,
-}: {
-  slug: string;
-  fallback: Story;
-}) {
-  const { data, ready } = useSiteData();
-  const story = !ready
-    ? fallback
-    : data.stories.find((item) => item.slug === slug) ?? null;
+export function StoryDetailClient({ slug }: { slug: string }) {
+  const { data, ready, error } = useSiteData();
 
-  if (ready && !story) {
+  if (!data) {
+    return <CatalogStatus ready={ready} error={error} />;
+  }
+
+  const story = data.stories.find((item) => item.slug === slug) ?? null;
+
+  if (!story) {
     return (
       <p className="ma-empty">
-        Story đã xóa trên máy này. Reset seed trong Admin để khôi phục, hoặc{" "}
-        <Link href="/stories/">về danh sách</Link>.
+        Không thấy story này trên Worker.{" "}
+        <Link href="/stories/">Về danh sách</Link>
       </p>
     );
   }
-
-  const view = story ?? fallback;
 
   return (
     <article className="story-detail">
       <nav className="story-crumb" aria-label="Breadcrumb">
         <Link href="/stories/">Stories</Link>
         <span aria-hidden="true"> / </span>
-        <span>{view.title}</span>
+        <span>{story.title}</span>
       </nav>
       <p className="story-detail__meta">
-        <time dateTime={view.date}>{formatStoryDate(view.date)}</time>
-        <span> · {view.kindLabel}</span>
+        <time dateTime={story.date}>{formatStoryDate(story.date)}</time>
+        <span> · {story.kindLabel}</span>
       </p>
       <div className="story-detail__hero-wrap">
         <img
           className="story-detail__hero"
-          src={mediaUrl(view.image)}
-          alt={view.imageAlt}
+          src={mediaUrl(story.image)}
+          alt={story.imageAlt}
           width={960}
           height={600}
         />
       </div>
-      {view.body.map((p) => (
+      {story.body.map((p) => (
         <p key={p}>{p}</p>
       ))}
-      {view.watchHref ? (
+      {story.watchHref ? (
         <p className="story-detail__watch">
           <a
             className="btn btn-primary"
-            href={view.watchHref}
+            href={story.watchHref}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {view.watchLabel}
+            {story.watchLabel}
           </a>
         </p>
       ) : null}

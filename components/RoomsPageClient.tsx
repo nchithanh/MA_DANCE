@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { BookingCta } from "@/components/BookingCta";
+import { CatalogStatus } from "@/components/CatalogStatus";
 import { STUDIO_SLOTS, isRoomSlotBusy } from "@/lib/discovery-data";
 import { mediaUrl } from "@/lib/media";
 import { useSiteData } from "@/lib/use-site-data";
@@ -31,10 +32,15 @@ function buildDays(count = 7) {
 }
 
 export function RoomsPageClient() {
-  const { data } = useSiteData();
-  const { branches } = data;
+  const { data, ready, error } = useSiteData();
   const days = useMemo(() => buildDays(7), []);
   const [dateIso, setDateIso] = useState(days[0]?.iso ?? isoLocal(new Date()));
+
+  if (!data) {
+    return <CatalogStatus ready={ready} error={error} />;
+  }
+
+  const { branches } = data;
 
   return (
     <div className="ma-room-board">

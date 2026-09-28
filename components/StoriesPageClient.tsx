@@ -1,13 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { CatalogStatus } from "@/components/CatalogStatus";
 import { mediaUrl } from "@/lib/media";
 import { storyPublicHref } from "@/lib/site-data";
 import { formatStoryDate } from "@/lib/stories";
 import { useSiteData } from "@/lib/use-site-data";
 
 export function StoriesPageClient() {
-  const { data } = useSiteData();
+  const { data, ready, error } = useSiteData();
+
+  if (!data) {
+    return <CatalogStatus ready={ready} error={error} />;
+  }
+
   const [featured, ...rest] = data.stories;
 
   return (

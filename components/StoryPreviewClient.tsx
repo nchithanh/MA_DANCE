@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { CatalogStatus } from "@/components/CatalogStatus";
 import { mediaUrl } from "@/lib/media";
 import { formatStoryDate } from "@/lib/stories";
 import { useSiteData } from "@/lib/use-site-data";
@@ -9,10 +10,14 @@ import { useSiteData } from "@/lib/use-site-data";
 export function StoryPreviewClient() {
   const params = useSearchParams();
   const slug = params.get("slug") || "";
-  const { data, ready } = useSiteData();
+  const { data, ready, error } = useSiteData();
+
+  if (!data) {
+    return <CatalogStatus ready={ready} error={error} />;
+  }
+
   const story = data.stories.find((item) => item.slug === slug);
 
-  if (!ready) return <p>Đang tải…</p>;
   if (!story) {
     return (
       <p className="ma-empty">

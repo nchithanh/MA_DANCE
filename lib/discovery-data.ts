@@ -399,7 +399,7 @@ export function countRooms() {
   return branches.reduce((n, b) => n + b.rooms.length, 0);
 }
 
-export function branchName(id: BranchId, list: Branch[] = branches) {
+export function branchName(id: string, list: Branch[]) {
   return list.find((b) => b.id === id)?.name ?? id;
 }
 

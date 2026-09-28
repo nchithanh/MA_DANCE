@@ -2,15 +2,17 @@
 
 import { useMemo, useState } from "react";
 import { BookingCta } from "@/components/BookingCta";
-import { branchName, midEnroll } from "@/lib/discovery-data";
+import { CatalogStatus } from "@/components/CatalogStatus";
+import { branchName } from "@/lib/discovery-data";
 import { useSiteData } from "@/lib/use-site-data";
 
 export function ClassesPageClient() {
-  const { data } = useSiteData();
-  const { courses, branches } = data;
+  const { data, ready, error } = useSiteData();
   const [branch, setBranch] = useState("");
   const [level, setLevel] = useState("");
   const [style, setStyle] = useState("");
+  const courses = data?.courses ?? [];
+  const branches = data?.branches ?? [];
   const styles = useMemo(
     () => [...new Set(courses.map((c) => c.style))].sort(),
     [courses],
@@ -21,6 +23,10 @@ export function ClassesPageClient() {
       (!level || c.level === level) &&
       (!style || c.style === style),
   );
+
+  if (!data) {
+    return <CatalogStatus ready={ready} error={error} />;
+  }
 
   return (
     <>
@@ -61,7 +67,7 @@ export function ClassesPageClient() {
       <aside className="ma-callout">
         <h2>Nhận giữa khóa</h2>
         <ul>
-          {midEnroll.map((m) => (
+          {data.midEnroll.map((m) => (
             <li key={m.level}>
               <strong>{m.level}</strong> — {m.rule}
             </li>

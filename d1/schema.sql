@@ -89,7 +89,14 @@ CREATE TABLE IF NOT EXISTS site_meta (
   value TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS admin_sessions (
+  token TEXT PRIMARY KEY,
+  created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL
+);
+
 INSERT OR IGNORE INTO site_meta (key, value) VALUES ('schema_version', '1');
+-- homepage JSON: seed bằng d1/homepage.json (wrangler) — key = homepage
 
 INSERT OR IGNORE INTO branches (id, name, address, note, sort_order) VALUES
   ('q10', 'Quận 10', '436A/101 Đường 3/2, Phường Hoà Hưng, TP.HCM', 'MI lớn · MON nhỏ · Lab quay', 0),
