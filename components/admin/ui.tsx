@@ -8,7 +8,7 @@ import type {
 import { ChevronDown } from "lucide-react";
 
 const control =
-  "w-full rounded-xl border border-ma-border bg-ma-bg px-3 py-2.5 text-sm text-ma-text transition placeholder:text-ma-text-muted focus:border-ma-accent focus:outline-none focus:ring-2 focus:ring-ma-accent/30 disabled:opacity-40";
+  "w-full rounded-xl border border-ma-border bg-ma-bg px-3 py-2.5 text-base text-ma-text transition placeholder:text-ma-text-muted focus:border-ma-accent focus:outline-none focus:ring-2 focus:ring-ma-accent/30 disabled:opacity-40 md:text-sm";
 
 const buttonStyles = {
   primary: "bg-ma-accent text-black hover:bg-ma-accent-hover",

@@ -54,7 +54,7 @@ export function ImageField({
         type="file"
         accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
         onChange={(e) => void onFile(e)}
-        className="text-xs text-ma-text-secondary file:mr-3 file:rounded-xl file:border-0 file:bg-ma-accent file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-black"
+        className="text-base text-ma-text-secondary file:mr-3 file:rounded-xl file:border-0 file:bg-ma-accent file:px-3 file:py-1.5 file:text-base file:font-medium file:text-black md:text-xs md:file:text-xs"
       />
     </label>
   );
