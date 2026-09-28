@@ -2,6 +2,7 @@
 
 import { ImageField } from "@/components/ImageField";
 import type { AdminOverlayState } from "@/components/AdminOverlay";
+import { Badge, Button, Checkbox, CollapseCard, Field, FieldGrid, Input, Select, Textarea } from "@/components/admin/ui";
 import { MA_API_URL } from "@/lib/ma-api";
 import {
   emptySeoPage,
@@ -25,15 +26,17 @@ function patchPage(seo: SeoDoc, path: string, part: Partial<SeoPage>): SeoDoc {
   return { ...seo, pages: { ...seo.pages, [path]: { ...prev, ...part } } };
 }
 
+function Count({ value, max }: { value: number; max: number }) {
+  return <span className={value > max ? "text-ma-accent" : "text-ma-text-muted"}>({value}/{max})</span>;
+}
+
 function GooglePreview({ title, description, url }: { title: string; description: string; url: string }) {
   return (
-    <div className="border rounded p-3 bg-body-tertiary">
-      <p className="admin-kicker text-uppercase text-secondary fw-bold mb-2">Preview SERP</p>
-      <p className="small mb-1 text-primary text-decoration-underline" style={{ fontSize: "1.05rem" }}>
-        {title || "—"}
-      </p>
-      <p className="small text-success mb-1">{url}</p>
-      <p className="small text-secondary mb-0">{description || "—"}</p>
+    <div className="rounded-2xl border border-ma-border bg-ma-bg p-4">
+      <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ma-text-muted">Preview SERP</p>
+      <p className="mt-2 text-base text-[#8ab4f8] underline decoration-[#8ab4f8]/40">{title || "—"}</p>
+      <p className="mt-1 text-sm text-ma-success">{url}</p>
+      <p className="mt-1 text-sm text-ma-text-secondary">{description || "—"}</p>
     </div>
   );
 }
@@ -53,57 +56,31 @@ function PageEditor({
 }) {
   const canonical = page.canonical || publicUrl(origin, path);
   return (
-    <div className="d-grid gap-3">
+    <div className="grid gap-4">
       <GooglePreview title={page.title} description={page.description} url={canonical} />
-      <div>
-        <label className="form-label">
-          Title <span className={page.title.length > 60 ? "text-warning" : "text-secondary"}>({page.title.length}/60)</span>
-        </label>
-        <input className="form-control" value={page.title} onChange={(e) => onChange({ title: e.target.value })} />
-      </div>
-      <div>
-        <label className="form-label">
-          Meta description{" "}
-          <span className={page.description.length > 160 ? "text-warning" : "text-secondary"}>
-            ({page.description.length}/160)
-          </span>
-        </label>
-        <textarea
-          className="form-control"
-          rows={3}
-          value={page.description}
-          onChange={(e) => onChange({ description: e.target.value })}
-        />
-      </div>
-      <div className="row g-3">
-        <div className="col-md-6">
-          <label className="form-label">Robots</label>
-          <select
-            className="form-select"
-            value={page.robots}
-            onChange={(e) => onChange({ robots: e.target.value as SeoRobots })}
-          >
+      <Field label="Title" hint={<Count value={page.title.length} max={60} />}>
+        <Input value={page.title} onChange={(e) => onChange({ title: e.target.value })} />
+      </Field>
+      <Field label="Meta description" hint={<Count value={page.description.length} max={160} />}>
+        <Textarea rows={3} value={page.description} onChange={(e) => onChange({ description: e.target.value })} />
+      </Field>
+      <FieldGrid>
+        <Field label="Robots">
+          <Select value={page.robots} onChange={(e) => onChange({ robots: e.target.value as SeoRobots })}>
             {ROBOTS.map((item) => (
               <option key={item} value={item}>
                 {item}
               </option>
             ))}
-          </select>
-        </div>
-        <div className="col-md-6">
-          <label className="form-label">Từ khóa chính</label>
-          <input className="form-control" value={page.focusKw} onChange={(e) => onChange({ focusKw: e.target.value })} />
-        </div>
-      </div>
-      <div>
-        <label className="form-label">Canonical (trống = origin + path)</label>
-        <input
-          className="form-control"
-          value={page.canonical}
-          placeholder={canonical}
-          onChange={(e) => onChange({ canonical: e.target.value })}
-        />
-      </div>
+          </Select>
+        </Field>
+        <Field label="Từ khóa chính">
+          <Input value={page.focusKw} onChange={(e) => onChange({ focusKw: e.target.value })} />
+        </Field>
+      </FieldGrid>
+      <Field label="Canonical (trống = origin + path)">
+        <Input value={page.canonical} placeholder={canonical} onChange={(e) => onChange({ canonical: e.target.value })} />
+      </Field>
       <ImageField label="OG image" value={page.ogImage} onChange={(ogImage) => onChange({ ogImage })} onBusy={onBusy} />
     </div>
   );
@@ -132,41 +109,30 @@ export function SeoPagesEditor({
   const [open, setOpen] = useState("/");
 
   return (
-    <div className="d-grid gap-2">
-      <p className="text-secondary small mb-1">
-        Title / description / robots từng URL — giống Yoast. Story lấy slug từ Catalog.
-      </p>
+    <div className="grid gap-3">
+      <p className="text-sm text-ma-text-secondary">Title, description và robots từng URL. Story lấy slug từ Catalog.</p>
       {rows.map((row) => {
         const page = seo.pages[row.path] || emptySeoPage({ title: row.label });
         const indexed = isIndexable(seo, row.path);
         return (
-          <details
+          <CollapseCard
             key={row.path}
-            className="border rounded"
+            title={row.label}
             open={open === row.path}
-            onToggle={(e) => {
-              if ((e.target as HTMLDetailsElement).open) setOpen(row.path);
+            onToggle={(next) => {
+              if (next) setOpen(row.path);
             }}
+            badge={<Badge tone={indexed ? "success" : "muted"}>{indexed ? "index" : "noindex"}</Badge>}
           >
-            <summary className="d-flex align-items-center justify-content-between gap-2 px-3 py-2">
-              <span>
-                <strong>{row.label}</strong>
-                <span className="text-secondary small ms-2">{row.path}</span>
-              </span>
-              <span className={`badge ${indexed ? "text-bg-success" : "text-bg-secondary"}`}>
-                {indexed ? "index" : "noindex"}
-              </span>
-            </summary>
-            <div className="border-top p-3">
-              <PageEditor
-                path={row.path}
-                page={page}
-                origin={seo.site.canonicalOrigin}
-                onBusy={onBusy}
-                onChange={(part) => onChange(patchPage(seo, row.path, part))}
-              />
-            </div>
-          </details>
+            <p className="-mt-1 text-xs text-ma-text-muted">{row.path}</p>
+            <PageEditor
+              path={row.path}
+              page={page}
+              origin={seo.site.canonicalOrigin}
+              onBusy={onBusy}
+              onChange={(part) => onChange(patchPage(seo, row.path, part))}
+            />
+          </CollapseCard>
         );
       })}
     </div>
@@ -187,138 +153,107 @@ export function SeoSettingsEditor({
     onChange({ ...seo, site: { ...site, ...part } });
   }
   return (
-    <div className="d-grid gap-3">
-      <p className="text-secondary small mb-0">
-        Cài đặt toàn site. Tắt index = Discourage search engines (WordPress Reading).
-      </p>
-      <div className="row g-3">
-        <div className="col-md-6">
-          <label className="form-label">Tên site</label>
-          <input className="form-control" value={site.name} onChange={(e) => patchSite({ name: e.target.value })} />
-        </div>
-        <div className="col-md-6">
-          <label className="form-label">Tagline</label>
-          <input className="form-control" value={site.tagline} onChange={(e) => patchSite({ tagline: e.target.value })} />
-        </div>
-      </div>
-      <div>
-        <label className="form-label">Title mặc định</label>
-        <input
-          className="form-control"
-          value={site.defaultTitle}
-          onChange={(e) => patchSite({ defaultTitle: e.target.value })}
-        />
-      </div>
-      <div>
-        <label className="form-label">Description mặc định</label>
-        <textarea
-          className="form-control"
-          rows={3}
-          value={site.defaultDescription}
-          onChange={(e) => patchSite({ defaultDescription: e.target.value })}
-        />
-      </div>
-      <div>
-        <label className="form-label">Canonical origin (không slash cuối)</label>
-        <input
-          className="form-control"
-          value={site.canonicalOrigin}
-          onChange={(e) => patchSite({ canonicalOrigin: e.target.value })}
-        />
-        <div className="form-text">Live Pages: https://nchithanh.github.io/MA_DANCE</div>
-      </div>
+    <div className="grid gap-4">
+      <p className="text-sm text-ma-text-secondary">Cài đặt toàn site. Tắt index = không cho công cụ tìm kiếm lập chỉ mục.</p>
+      <FieldGrid>
+        <Field label="Tên site">
+          <Input value={site.name} onChange={(e) => patchSite({ name: e.target.value })} />
+        </Field>
+        <Field label="Tagline">
+          <Input value={site.tagline} onChange={(e) => patchSite({ tagline: e.target.value })} />
+        </Field>
+      </FieldGrid>
+      <Field label="Title mặc định">
+        <Input value={site.defaultTitle} onChange={(e) => patchSite({ defaultTitle: e.target.value })} />
+      </Field>
+      <Field label="Description mặc định">
+        <Textarea rows={3} value={site.defaultDescription} onChange={(e) => patchSite({ defaultDescription: e.target.value })} />
+      </Field>
+      <Field label="Canonical origin (không slash cuối)" hint={<span className="text-ma-text-muted">Live Pages: https://nchithanh.github.io/MA_DANCE</span>}>
+        <Input value={site.canonicalOrigin} onChange={(e) => patchSite({ canonicalOrigin: e.target.value })} />
+      </Field>
       <ImageField label="OG mặc định" value={site.ogImage} onChange={(ogImage) => patchSite({ ogImage })} onBusy={onBusy} />
-      <div>
-        <label className="form-label">Twitter / X @</label>
-        <input className="form-control" value={site.twitter} onChange={(e) => patchSite({ twitter: e.target.value })} />
-      </div>
-      <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="seo-noindex"
-          checked={site.noindexSite}
-          onChange={(e) => patchSite({ noindexSite: e.target.checked })}
-        />
-        <label className="form-check-label" htmlFor="seo-noindex">
-          Discourage search engines (noindex toàn site)
-        </label>
-      </div>
-      <div className="row g-3">
-        <div className="col-md-6">
-          <label className="form-label">Google Search Console</label>
-          <input
-            className="form-control"
+      <Field label="Twitter / X @">
+        <Input value={site.twitter} onChange={(e) => patchSite({ twitter: e.target.value })} />
+      </Field>
+      <Checkbox
+        id="seo-noindex"
+        label="Discourage search engines (noindex toàn site)"
+        checked={site.noindexSite}
+        onChange={(noindexSite) => patchSite({ noindexSite })}
+      />
+      <FieldGrid>
+        <Field label="Google Search Console">
+          <Input
             value={site.googleVerify}
-            onChange={(e) => patchSite({ googleVerify: e.target.value })}
             placeholder="content của google-site-verification"
+            onChange={(e) => patchSite({ googleVerify: e.target.value })}
           />
-        </div>
-        <div className="col-md-6">
-          <label className="form-label">Bing</label>
-          <input
-            className="form-control"
-            value={site.bingVerify}
-            onChange={(e) => patchSite({ bingVerify: e.target.value })}
-            placeholder="msvalidate.01"
-          />
-        </div>
-      </div>
-      <div>
-        <label className="form-label">robots.txt thêm (tuỳ chọn)</label>
-        <textarea
-          className="form-control"
-          rows={4}
-          value={site.robotsExtra}
-          onChange={(e) => patchSite({ robotsExtra: e.target.value })}
-        />
-      </div>
+        </Field>
+        <Field label="Bing">
+          <Input value={site.bingVerify} placeholder="msvalidate.01" onChange={(e) => patchSite({ bingVerify: e.target.value })} />
+        </Field>
+      </FieldGrid>
+      <Field label="robots.txt thêm (tuỳ chọn)">
+        <Textarea rows={4} value={site.robotsExtra} onChange={(e) => patchSite({ robotsExtra: e.target.value })} />
+      </Field>
     </div>
   );
 }
 
 export function SeoSitemapPanel({ seo, stories }: { seo: SeoDoc; stories: Story[] }) {
   const origin = seo.site.canonicalOrigin;
-  const pagesUrl = publicUrl(origin, "/sitemap-pages.xml");
-  const storiesUrl = publicUrl(origin, "/sitemap-stories.xml");
   const indexUrl = publicUrl(origin, "/sitemap.xml");
   const workerIndex = `${MA_API_URL}/sitemap.xml`;
   const indexedPages = SEO_FIXED_PAGES.filter((item) => isIndexable(seo, item.path));
   const indexedStories = stories.filter((story) => isIndexable(seo, storySeoPath(story.slug)));
 
   return (
-    <div className="d-grid gap-3">
-      <p className="text-secondary small mb-0">
-        Sitemap index kiểu WordPress. Google đọc file trên Pages sau mỗi deploy. Worker phục vụ bản live để preview.
+    <div className="grid gap-4">
+      <p className="text-sm text-ma-text-secondary">
+        Sitemap index. Google đọc file trên Pages sau mỗi deploy. Worker phục vụ bản live để xem trước.
       </p>
-      <div className="border rounded p-3">
-        <p className="fw-bold mb-2">GSC — nộp URL này</p>
-        <code className="d-block mb-2">{indexUrl}</code>
-        <p className="small text-secondary mb-0">Preview Worker: {workerIndex}</p>
+      <div className="rounded-2xl border border-ma-border bg-ma-card p-4">
+        <p className="text-sm font-medium">GSC — nộp URL này</p>
+        <code className="mt-2 block break-all text-sm text-ma-accent">{indexUrl}</code>
+        <p className="mt-2 text-xs text-ma-text-muted">Preview Worker: {workerIndex}</p>
       </div>
-      <ul className="list-group">
-        <li className="list-group-item d-flex justify-content-between">
+      <ul className="overflow-hidden rounded-2xl border border-ma-border">
+        <li className="flex items-center justify-between gap-3 border-b border-ma-border px-4 py-3 text-sm">
           <span>sitemap-pages.xml</span>
-          <span className="text-secondary">{indexedPages.length} URL</span>
+          <span className="text-ma-text-secondary">{indexedPages.length} URL</span>
         </li>
-        <li className="list-group-item d-flex justify-content-between">
+        <li className="flex items-center justify-between gap-3 px-4 py-3 text-sm">
           <span>sitemap-stories.xml</span>
-          <span className="text-secondary">{indexedStories.length} URL</span>
+          <span className="text-ma-text-secondary">{indexedStories.length} URL</span>
         </li>
       </ul>
-      <p className="small text-secondary mb-0">Pages</p>
-      <ul className="small mb-0">
-        {indexedPages.map((item) => (
-          <li key={item.path}>{publicUrl(origin, item.path)}</li>
-        ))}
-      </ul>
-      <p className="small text-secondary mb-0">Stories</p>
-      <ul className="small mb-0">
-        {indexedStories.map((story) => (
-          <li key={story.slug}>{publicUrl(origin, storySeoPath(story.slug))}</li>
-        ))}
-      </ul>
-      <a className="btn btn-outline-secondary btn-sm" href={workerIndex} target="_blank" rel="noreferrer">
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-ma-text-muted">Pages</p>
+        <ul className="mt-2 grid gap-1 text-sm text-ma-text-secondary">
+          {indexedPages.map((item) => (
+            <li key={item.path} className="break-all">
+              {publicUrl(origin, item.path)}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-ma-text-muted">Stories</p>
+        <ul className="mt-2 grid gap-1 text-sm text-ma-text-secondary">
+          {indexedStories.map((story) => (
+            <li key={story.slug} className="break-all">
+              {publicUrl(origin, storySeoPath(story.slug))}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <a
+        className="inline-flex w-fit items-center justify-center rounded-xl border border-ma-border px-3 py-1.5 text-xs text-ma-text-secondary transition hover:bg-ma-card-hover hover:text-ma-text"
+        href={workerIndex}
+        target="_blank"
+        rel="noreferrer"
+      >
         Mở sitemap Worker
       </a>
     </div>

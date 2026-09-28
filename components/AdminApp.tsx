@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { Menu, X } from "lucide-react";
 import { getAdminToken, logoutAdmin, setAdminSession } from "@/lib/admin-auth";
 import {
   BranchesEditor,
@@ -12,6 +13,8 @@ import {
 import { AdminOverlay, type AdminOverlayState } from "@/components/AdminOverlay";
 import { HomepageEditor } from "@/components/HomepageEditor";
 import { SeoPagesEditor, SeoSettingsEditor, SeoSitemapPanel } from "@/components/AdminSeo";
+import { Badge, Button, Field, Input } from "@/components/admin/ui";
+import { ADMIN_TABS, Sidebar, SidebarFrame, tabGroupLabel, type AdminTabId } from "@/components/admin/Sidebar";
 import { loginAdminApi, logoutAdminApi, putHomepage, putSeo, syncCatalog, verifyAdminSession } from "@/lib/ma-admin-api";
 import { fetchCatalog, fetchHomepage, fetchSeo } from "@/lib/ma-api";
 import { type HomeLocale, seedHomepage, type Homepage } from "@/lib/homepage-data";
@@ -19,86 +22,34 @@ import { seedSeo, type SeoDoc } from "@/lib/seo-data";
 import { catalogToSiteData, emptySiteData, type SiteData } from "@/lib/site-data";
 import { siteHref } from "@/lib/media";
 
-type TabId =
-  | "homepage"
-  | "courses"
-  | "rooms"
-  | "packages"
-  | "stories"
-  | "branches"
-  | "seo-pages"
-  | "seo-settings"
-  | "seo-sitemap";
-
-const NAV_GROUPS: { label: string; items: { id: TabId; label: string }[] }[] = [
-  {
-    label: "Trang chủ",
-    items: [{ id: "homepage", label: "Homepage" }],
-  },
-  {
-    label: "Catalog",
-    items: [
-      { id: "courses", label: "Khóa học" },
-      { id: "rooms", label: "Phòng" },
-      { id: "packages", label: "Gói" },
-      { id: "stories", label: "Stories" },
-      { id: "branches", label: "Chi nhánh" },
-    ],
-  },
-  {
-    label: "SEO",
-    items: [
-      { id: "seo-pages", label: "Trang" },
-      { id: "seo-settings", label: "Cài đặt" },
-      { id: "seo-sitemap", label: "Sitemap" },
-    ],
-  },
-];
-
-const TABS = NAV_GROUPS.flatMap((group) => group.items);
-
-function SideFoot({ onLogout }: { onLogout: () => void }) {
+function SyncActions({
+  dirty,
+  busy,
+  onReload,
+  onSave,
+}: {
+  dirty: boolean;
+  busy: boolean;
+  onReload: () => void;
+  onSave: () => void;
+}) {
   return (
-    <div className="mt-auto d-grid gap-2 pt-3">
-      <a className="btn btn-sm btn-outline-secondary" href={siteHref("/")}>
-        Về site
-      </a>
-      <button type="button" className="btn btn-sm btn-outline-danger" onClick={onLogout}>
-        Đăng xuất
-      </button>
-    </div>
-  );
-}
-
-function SideNav({ tab, onTab }: { tab: TabId; onTab: (id: TabId) => void }) {
-  return (
-    <nav aria-label="Admin sections" className="d-grid gap-3">
-      {NAV_GROUPS.map((group) => (
-        <div key={group.label}>
-          <p className="admin-kicker text-uppercase text-secondary fw-bold mb-2">{group.label}</p>
-          <div className="list-group list-group-flush">
-            {group.items.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className={`list-group-item list-group-item-action rounded ${tab === item.id ? "active" : ""}`}
-                aria-current={tab === item.id ? "page" : undefined}
-                onClick={() => onTab(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      ))}
-    </nav>
+    <>
+      <Badge tone={dirty ? "warning" : "success"}>{dirty ? "Chưa lưu" : "Đã đồng bộ"}</Badge>
+      <Button variant="secondary" size="sm" onClick={onReload} disabled={busy}>
+        Tải lại
+      </Button>
+      <Button size="sm" onClick={onSave} disabled={busy}>
+        Lưu
+      </Button>
+    </>
   );
 }
 
 export function AdminApp() {
   const [booted, setBooted] = useState(false);
   const [authed, setAuthed] = useState(false);
-  const [tab, setTab] = useState<TabId>("homepage");
+  const [tab, setTab] = useState<AdminTabId>("homepage");
   const [navOpen, setNavOpen] = useState(false);
   const [draft, setDraft] = useState<SiteData>(emptySiteData);
   const [snapshot, setSnapshot] = useState<SiteData>(emptySiteData);
@@ -119,6 +70,7 @@ export function AdminApp() {
     [draft, snapshot, home, homeSnap, seo, seoSnap],
   );
   const busy = overlay?.mode === "busy";
+  const current = ADMIN_TABS.find((item) => item.id === tab);
 
   function applyCatalog(data: SiteData) {
     const copy = structuredClone(data);
@@ -179,6 +131,15 @@ export function AdminApp() {
     return () => document.body.classList.remove("ma-admin-open");
   }, []);
 
+  useEffect(() => {
+    if (!navOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setNavOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [navOpen]);
+
   async function onLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
@@ -227,6 +188,7 @@ export function AdminApp() {
     }
     logoutAdmin();
     setAuthed(false);
+    setNavOpen(false);
   }
 
   async function persist() {
@@ -274,26 +236,18 @@ export function AdminApp() {
       });
   }
 
-  function selectTab(id: TabId) {
+  function selectTab(id: AdminTabId) {
     setTab(id);
     setNavOpen(false);
   }
 
   const actions = (
-    <>
-      <span className={`badge ${dirty ? "text-bg-warning" : "text-bg-success"}`}>{dirty ? "Chưa lưu" : "Đã đồng bộ"}</span>
-      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={reloadWorker} disabled={busy}>
-        Tải lại
-      </button>
-      <button type="button" className="btn btn-sm btn-primary" onClick={() => void persist()} disabled={busy}>
-        Lưu
-      </button>
-    </>
+    <SyncActions dirty={dirty} busy={busy} onReload={reloadWorker} onSave={() => void persist()} />
   );
 
   if (!booted) {
     return (
-      <div className="ma-admin accordion min-vh-100 bg-body" data-bs-theme="dark">
+      <div className="ma-admin min-h-dvh bg-ma-bg">
         <AdminOverlay state={{ mode: "busy", title: "Đang tải admin…" }} />
       </div>
     );
@@ -301,48 +255,32 @@ export function AdminApp() {
 
   if (!authed) {
     return (
-      <div className="ma-admin accordion min-vh-100 bg-body d-flex align-items-center justify-content-center p-3" data-bs-theme="dark">
-        <form className="card shadow-sm" style={{ width: "min(22rem, 100%)" }} onSubmit={onLogin}>
-          <div className="card-body d-grid gap-3">
-            <p className="admin-kicker text-uppercase fw-bold mb-0">MA Admin</p>
-            <h1 className="h3 mb-0">Đăng nhập</h1>
-            <p className="text-secondary small mb-0">Worker tạo session token (7 ngày). Chỉ lưu trên trình duyệt này.</p>
-            <div>
-              <label className="form-label" htmlFor="admin-user">
-                Tài khoản
-              </label>
-              <input
-                id="admin-user"
-                className="form-control"
-                name="user"
-                type="text"
-                autoComplete="username"
-                required
-                disabled={busy}
-              />
-            </div>
-            <div>
-              <label className="form-label" htmlFor="admin-pass">
-                Mật khẩu
-              </label>
-              <input
-                id="admin-pass"
-                className="form-control"
-                name="pass"
-                type="password"
-                autoComplete="current-password"
-                required
-                disabled={busy}
-              />
-            </div>
-            {loginErr ? <p className="text-danger small mb-0">{loginErr}</p> : null}
-            <button type="submit" className="btn btn-primary" disabled={busy}>
-              Vào
-            </button>
-            <a className="link-secondary text-center small" href={siteHref("/")}>
-              Về site
-            </a>
+      <div className="ma-admin grid min-h-dvh place-items-center bg-ma-bg px-4">
+        <form className="grid w-full max-w-sm gap-4 rounded-2xl border border-ma-border bg-ma-card p-6 shadow-[0_16px_40px_rgba(0,0,0,0.28)]" onSubmit={onLogin}>
+          <div className="flex items-center gap-3">
+            <span className="grid size-10 place-items-center rounded-[0.625rem] bg-ma-accent text-sm font-semibold text-black">MA</span>
+            <span>
+              <span className="block text-sm font-semibold tracking-wide">MA ADMIN</span>
+              <span className="block text-xs text-ma-text-muted">Edu Dance Studio</span>
+            </span>
           </div>
+          <div>
+            <h1 className="text-xl font-medium">Đăng nhập</h1>
+            <p className="mt-1 text-sm text-ma-text-secondary">Phiên làm việc 7 ngày, chỉ trên trình duyệt này.</p>
+          </div>
+          <Field label="Tài khoản">
+            <Input id="admin-user" name="user" type="text" autoComplete="username" required disabled={busy} />
+          </Field>
+          <Field label="Mật khẩu">
+            <Input id="admin-pass" name="pass" type="password" autoComplete="current-password" required disabled={busy} />
+          </Field>
+          {loginErr ? <p className="text-sm text-ma-danger">{loginErr}</p> : null}
+          <Button type="submit" disabled={busy}>
+            Vào
+          </Button>
+          <a href={siteHref("/")} className="text-center text-sm text-ma-text-secondary hover:text-ma-text">
+            Về site
+          </a>
         </form>
         <AdminOverlay state={overlay} onDismiss={() => setOverlay(null)} />
       </div>
@@ -350,122 +288,124 @@ export function AdminApp() {
   }
 
   return (
-    <div className="ma-admin accordion d-flex min-vh-100 bg-body text-body" data-bs-theme="dark">
-      <aside className="admin-side d-none d-lg-flex flex-column border-end bg-body-tertiary p-3 sticky-top">
-        <p className="admin-kicker text-uppercase fw-bold mb-3">MA Admin</p>
-        <SideNav tab={tab} onTab={selectTab} />
-        <SideFoot onLogout={() => void onLogout()} />
-      </aside>
+    <div className="ma-admin flex min-h-dvh bg-ma-bg text-ma-text">
+      <SidebarFrame>
+        <Sidebar tab={tab} onTab={selectTab} onLogout={() => void onLogout()} />
+      </SidebarFrame>
 
-      <div
-        className={`offcanvas offcanvas-start d-lg-none bg-body-tertiary ${navOpen ? "show" : ""}`}
-        tabIndex={-1}
-        aria-hidden={navOpen ? undefined : true}
-        style={navOpen ? { visibility: "visible" } : undefined}
-      >
-        <div className="offcanvas-header border-bottom">
-          <p className="offcanvas-title admin-kicker text-uppercase fw-bold mb-0">MA Admin</p>
-          <button type="button" className="btn-close" aria-label="Đóng menu" onClick={() => setNavOpen(false)} />
-        </div>
-        <div className="offcanvas-body d-flex flex-column">
-          <SideNav tab={tab} onTab={selectTab} />
-          <SideFoot onLogout={() => void onLogout()} />
-        </div>
-      </div>
       {navOpen ? (
-        <button
-          type="button"
-          className="offcanvas-backdrop fade show d-lg-none border-0"
-          aria-label="Đóng menu"
-          onClick={() => setNavOpen(false)}
-        />
-      ) : null}
-
-      <div className="flex-grow-1 min-w-0 d-flex flex-column">
-        <header className="sticky-top border-bottom bg-body px-3 py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
-          <div className="d-flex align-items-center gap-2">
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <button type="button" className="absolute inset-0 bg-black/60" aria-label="Đóng menu" onClick={() => setNavOpen(false)} />
+          <aside className="relative flex h-full w-[min(16.25rem,calc(100svw-2.5rem))] flex-col bg-ma-card shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
             <button
               type="button"
-              className="btn btn-sm btn-outline-secondary d-lg-none"
+              className="absolute right-3 top-4 grid size-8 place-items-center rounded-xl text-ma-text-secondary hover:bg-ma-card-hover hover:text-ma-text"
+              aria-label="Đóng menu"
+              onClick={() => setNavOpen(false)}
+            >
+              <X className="size-4" />
+            </button>
+            <Sidebar tab={tab} onTab={selectTab} onLogout={() => void onLogout()} />
+          </aside>
+        </div>
+      ) : null}
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-30 flex flex-wrap items-center justify-between gap-3 border-b border-ma-border bg-ma-bg/80 px-4 py-3 backdrop-blur-md lg:px-8">
+          <div className="flex min-w-0 items-center gap-3">
+            <button
+              type="button"
+              className="grid size-9 place-items-center rounded-xl border border-ma-border text-ma-text-secondary hover:bg-ma-card-hover hover:text-ma-text lg:hidden"
               aria-label="Mở menu"
               onClick={() => setNavOpen(true)}
             >
-              Menu
+              <Menu className="size-4" />
             </button>
-            <div>
-              <p className="admin-kicker text-uppercase text-secondary fw-bold mb-1">
-                {tab.startsWith("seo") ? "SEO" : tab === "homepage" ? "Trang chủ" : "Catalog"}
+            <div className="min-w-0">
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ma-text-muted">
+                {tabGroupLabel(tab)} / {current?.label}
               </p>
-              <h1 className="h4 mb-0">{TABS.find((item) => item.id === tab)?.label}</h1>
+              <h1 className="truncate text-lg font-medium">{current?.label}</h1>
             </div>
           </div>
-          <div className="d-none d-lg-flex flex-wrap align-items-center gap-2">{actions}</div>
+          <div className="hidden items-center gap-2 lg:flex">{actions}</div>
         </header>
 
-        <main className="admin-main p-3 pb-5">
-          <p className="text-secondary small">
-            GET / Lưu qua Worker. Homepage + Catalog + SEO (title, robots, sitemap). Meta public cập nhật khi
-            deploy Pages. `/admin/` luôn noindex.
-          </p>
-          {loadError ? <p className="text-danger small">{loadError}</p> : null}
-
-          {tab === "homepage" ? (
-            <HomepageEditor
-              home={home}
-              lang={homeLang}
-              onLang={setHomeLang}
-              onChange={setHome}
-              onGoTab={(next) => selectTab(next)}
-              onBusy={setOverlay}
-            />
-          ) : null}
-          {tab === "courses" ? (
-            <CoursesEditor
-              courses={draft.courses}
-              branches={draft.branches}
-              onChange={(courses) => setDraft({ ...draft, courses })}
-            />
-          ) : null}
-          {tab === "rooms" ? (
-            <RoomsEditor
-              branches={draft.branches}
-              onChange={(branches) => setDraft({ ...draft, branches })}
-              onBusy={setOverlay}
-            />
-          ) : null}
-          {tab === "packages" ? (
-            <PackagesEditor
-              packages={draft.packages}
-              onChange={(next) => setDraft({ ...draft, packages: next })}
-            />
-          ) : null}
-          {tab === "stories" ? (
-            <StoriesEditor
-              stories={draft.stories}
-              onChange={(stories) => setDraft({ ...draft, stories })}
-              onBusy={setOverlay}
-            />
-          ) : null}
-          {tab === "branches" ? (
-            <BranchesEditor
-              branches={draft.branches}
-              onChange={(branches) => setDraft({ ...draft, branches })}
-            />
-          ) : null}
-          {tab === "seo-pages" ? (
-            <SeoPagesEditor seo={seo} stories={draft.stories} onChange={setSeo} onBusy={setOverlay} />
-          ) : null}
-          {tab === "seo-settings" ? (
-            <SeoSettingsEditor seo={seo} onChange={setSeo} onBusy={setOverlay} />
-          ) : null}
-          {tab === "seo-sitemap" ? <SeoSitemapPanel seo={seo} stories={draft.stories} /> : null}
+        <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6 pb-28 lg:px-8 lg:pb-10">
+          {loadError ? <p className="mb-4 text-sm text-ma-danger">{loadError}</p> : null}
+          <Panel tab={tab} home={home} homeLang={homeLang} setHomeLang={setHomeLang} setHome={setHome} draft={draft} setDraft={setDraft} seo={seo} setSeo={setSeo} selectTab={selectTab} setOverlay={setOverlay} />
         </main>
 
-        <div className="d-lg-none sticky-bottom border-top bg-body px-3 py-2 d-flex justify-content-end gap-2">
+        <div className="sticky bottom-0 z-30 flex items-center justify-end gap-2 border-t border-ma-border bg-ma-bg/90 px-4 py-3 backdrop-blur-md lg:hidden">
           {actions}
         </div>
       </div>
       <AdminOverlay state={overlay} onDismiss={() => setOverlay(null)} />
     </div>
   );
+}
+
+function Panel({
+  tab,
+  home,
+  homeLang,
+  setHomeLang,
+  setHome,
+  draft,
+  setDraft,
+  seo,
+  setSeo,
+  selectTab,
+  setOverlay,
+}: {
+  tab: AdminTabId;
+  home: Homepage;
+  homeLang: HomeLocale;
+  setHomeLang: (lang: HomeLocale) => void;
+  setHome: (next: Homepage) => void;
+  draft: SiteData;
+  setDraft: (next: SiteData) => void;
+  seo: SeoDoc;
+  setSeo: (next: SeoDoc) => void;
+  selectTab: (id: AdminTabId) => void;
+  setOverlay: (state: AdminOverlayState | null) => void;
+}): ReactNode {
+  if (tab === "homepage") {
+    return (
+      <HomepageEditor
+        home={home}
+        lang={homeLang}
+        onLang={setHomeLang}
+        onChange={setHome}
+        onGoTab={(next) => selectTab(next)}
+        onBusy={setOverlay}
+      />
+    );
+  }
+  if (tab === "courses") {
+    return (
+      <CoursesEditor courses={draft.courses} branches={draft.branches} onChange={(courses) => setDraft({ ...draft, courses })} />
+    );
+  }
+  if (tab === "rooms") {
+    return (
+      <RoomsEditor branches={draft.branches} onChange={(branches) => setDraft({ ...draft, branches })} onBusy={setOverlay} />
+    );
+  }
+  if (tab === "packages") {
+    return <PackagesEditor packages={draft.packages} onChange={(next) => setDraft({ ...draft, packages: next })} />;
+  }
+  if (tab === "stories") {
+    return <StoriesEditor stories={draft.stories} onChange={(stories) => setDraft({ ...draft, stories })} onBusy={setOverlay} />;
+  }
+  if (tab === "branches") {
+    return <BranchesEditor branches={draft.branches} onChange={(branches) => setDraft({ ...draft, branches })} />;
+  }
+  if (tab === "seo-pages") {
+    return <SeoPagesEditor seo={seo} stories={draft.stories} onChange={setSeo} onBusy={setOverlay} />;
+  }
+  if (tab === "seo-settings") {
+    return <SeoSettingsEditor seo={seo} onChange={setSeo} onBusy={setOverlay} />;
+  }
+  return <SeoSitemapPanel seo={seo} stories={draft.stories} />;
 }

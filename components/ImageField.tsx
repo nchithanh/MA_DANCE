@@ -5,6 +5,7 @@ import { getAdminToken } from "@/lib/admin-auth";
 import { uploadMedia } from "@/lib/ma-admin-api";
 import { previewUrl } from "@/lib/media";
 import type { AdminOverlayState } from "@/components/AdminOverlay";
+import { Input } from "@/components/admin/ui";
 
 export function ImageField({
   label,
@@ -39,19 +40,21 @@ export function ImageField({
   }
 
   return (
-    <label className="col-12 col-md-6 d-grid align-content-start">
-      <span className="form-label">{label}</span>
+    <label className="grid content-start gap-2">
+      <span className="text-xs font-medium tracking-wide text-ma-text-secondary">{label}</span>
       {preview ? (
-        <img className="admin-thumb img-thumbnail" src={preview} alt="" />
+        <img src={preview} alt="" className="aspect-[4/3] w-full max-w-48 rounded-2xl border border-ma-border object-cover" />
       ) : (
-        <span className="admin-thumb-empty d-grid border rounded text-secondary small">Chưa có ảnh</span>
+        <span className="grid aspect-[4/3] w-full max-w-48 place-items-center rounded-2xl border border-dashed border-ma-border text-xs text-ma-text-muted">
+          Chưa có ảnh
+        </span>
       )}
-      <input className="form-control mt-2" value={value} onChange={(e) => onChange(e.target.value)} />
+      <Input value={value} onChange={(e) => onChange(e.target.value)} />
       <input
-        className="form-control mt-2"
         type="file"
         accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
         onChange={(e) => void onFile(e)}
+        className="text-xs text-ma-text-secondary file:mr-3 file:rounded-xl file:border-0 file:bg-ma-accent file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-black"
       />
     </label>
   );
