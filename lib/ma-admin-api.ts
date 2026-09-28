@@ -1,6 +1,7 @@
 import type { Branch, Course, Package, Room } from "@/lib/discovery-data";
 import type { Homepage } from "@/lib/homepage-data";
 import { MA_API_URL } from "@/lib/ma-api";
+import type { SeoDoc } from "@/lib/seo-data";
 import type { SiteData } from "@/lib/site-data";
 import type { Story } from "@/lib/stories";
 
@@ -54,6 +55,10 @@ export async function logoutAdminApi(token: string) {
 
 export async function putHomepage(token: string, homepage: Homepage) {
   await adminFetch(token, "PUT", "/api/homepage", homepage);
+}
+
+export async function putSeo(token: string, seo: SeoDoc) {
+  await adminFetch(token, "PUT", "/api/seo", seo);
 }
 
 export async function uploadMedia(token: string, file: File): Promise<string> {

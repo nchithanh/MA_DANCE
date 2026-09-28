@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { EnrollPageClient } from "@/components/EnrollPageClient";
+import { routeMetadata } from "@/lib/route-seo";
 
-export const metadata: Metadata = {
-  title: "Đăng ký học — MA Dance Studio",
-  description: "Ghi danh khóa tháng MA Dance. Form giữ chỗ — xác nhận qua Zalo.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return routeMetadata("/enroll/");
+}
 
 export default function EnrollPage() {
   return (

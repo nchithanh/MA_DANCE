@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { EventsPageClient } from "@/components/EventsPageClient";
+import { routeMetadata } from "@/lib/route-seo";
 
-export const metadata: Metadata = {
-  title: "Biên đạo & sự kiện — MA Dance Studio",
-  description: "Choreography cá nhân, team, brand event, MV cover — brief form MA Dance.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return routeMetadata("/events/");
+}
 
 export default function EventsPage() {
   return (

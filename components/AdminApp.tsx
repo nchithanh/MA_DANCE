@@ -11,13 +11,24 @@ import {
 } from "@/components/AdminCatalog";
 import { AdminOverlay, type AdminOverlayState } from "@/components/AdminOverlay";
 import { HomepageEditor } from "@/components/HomepageEditor";
-import { loginAdminApi, logoutAdminApi, putHomepage, syncCatalog, verifyAdminSession } from "@/lib/ma-admin-api";
-import { fetchCatalog, fetchHomepage } from "@/lib/ma-api";
+import { SeoPagesEditor, SeoSettingsEditor, SeoSitemapPanel } from "@/components/AdminSeo";
+import { loginAdminApi, logoutAdminApi, putHomepage, putSeo, syncCatalog, verifyAdminSession } from "@/lib/ma-admin-api";
+import { fetchCatalog, fetchHomepage, fetchSeo } from "@/lib/ma-api";
 import { type HomeLocale, seedHomepage, type Homepage } from "@/lib/homepage-data";
+import { seedSeo, type SeoDoc } from "@/lib/seo-data";
 import { catalogToSiteData, emptySiteData, type SiteData } from "@/lib/site-data";
 import { siteHref } from "@/lib/media";
 
-type TabId = "homepage" | "courses" | "rooms" | "packages" | "stories" | "branches";
+type TabId =
+  | "homepage"
+  | "courses"
+  | "rooms"
+  | "packages"
+  | "stories"
+  | "branches"
+  | "seo-pages"
+  | "seo-settings"
+  | "seo-sitemap";
 
 const NAV_GROUPS: { label: string; items: { id: TabId; label: string }[] }[] = [
   {
@@ -32,6 +43,14 @@ const NAV_GROUPS: { label: string; items: { id: TabId; label: string }[] }[] = [
       { id: "packages", label: "Gói" },
       { id: "stories", label: "Stories" },
       { id: "branches", label: "Chi nhánh" },
+    ],
+  },
+  {
+    label: "SEO",
+    items: [
+      { id: "seo-pages", label: "Trang" },
+      { id: "seo-settings", label: "Cài đặt" },
+      { id: "seo-sitemap", label: "Sitemap" },
     ],
   },
 ];
@@ -86,13 +105,18 @@ export function AdminApp() {
   const [home, setHome] = useState<Homepage>(seedHomepage);
   const [homeSnap, setHomeSnap] = useState<Homepage>(seedHomepage);
   const [homeLang, setHomeLang] = useState<HomeLocale>("vi");
+  const [seo, setSeo] = useState<SeoDoc>(seedSeo);
+  const [seoSnap, setSeoSnap] = useState<SeoDoc>(seedSeo);
   const [loginErr, setLoginErr] = useState("");
   const [loadError, setLoadError] = useState("");
   const [overlay, setOverlay] = useState<AdminOverlayState | null>(null);
 
   const dirty = useMemo(
-    () => JSON.stringify(draft) !== JSON.stringify(snapshot) || JSON.stringify(home) !== JSON.stringify(homeSnap),
-    [draft, snapshot, home, homeSnap],
+    () =>
+      JSON.stringify(draft) !== JSON.stringify(snapshot) ||
+      JSON.stringify(home) !== JSON.stringify(homeSnap) ||
+      JSON.stringify(seo) !== JSON.stringify(seoSnap),
+    [draft, snapshot, home, homeSnap, seo, seoSnap],
   );
   const busy = overlay?.mode === "busy";
 
@@ -106,6 +130,12 @@ export function AdminApp() {
     const copy = structuredClone(data);
     setHome(copy);
     setHomeSnap(structuredClone(copy));
+  }
+
+  function applySeo(data: SeoDoc) {
+    const copy = structuredClone(data);
+    setSeo(copy);
+    setSeoSnap(structuredClone(copy));
   }
 
   useEffect(() => {
@@ -136,6 +166,12 @@ export function AdminApp() {
       } catch {
         applyHome(seedHomepage());
         setLoadError((prev) => prev || "Không tải được homepage từ Worker — đang mở seed để lưu lại.");
+      }
+      try {
+        applySeo(await fetchSeo());
+      } catch {
+        applySeo(seedSeo());
+        setLoadError((prev) => prev || "Không tải được SEO từ Worker — đang mở seed để lưu lại.");
       } finally {
         setBooted(true);
       }
@@ -164,6 +200,11 @@ export function AdminApp() {
         applyHome(await fetchHomepage());
       } catch {
         applyHome(seedHomepage());
+      }
+      try {
+        applySeo(await fetchSeo());
+      } catch {
+        applySeo(seedSeo());
       }
       setLoadError("");
       setOverlay(null);
@@ -195,13 +236,15 @@ export function AdminApp() {
       setAuthed(false);
       return;
     }
-    setOverlay({ mode: "busy", title: "Đang lưu lên Worker…", detail: "Catalog + homepage" });
+    setOverlay({ mode: "busy", title: "Đang lưu lên Worker…", detail: "Catalog + homepage + SEO" });
     try {
       await syncCatalog(token, snapshot, draft);
       await putHomepage(token, home);
+      await putSeo(token, seo);
       const catalog = await fetchCatalog();
       applyCatalog(catalogToSiteData(catalog));
       applyHome(await fetchHomepage());
+      applySeo(await fetchSeo());
       setLoadError("");
       setOverlay({ mode: "ok", title: "Đã lưu" });
       window.setTimeout(() => setOverlay(null), 1400);
@@ -214,17 +257,18 @@ export function AdminApp() {
 
   function reloadWorker() {
     if (!window.confirm("Bỏ chỉnh chưa lưu và tải lại từ Worker?")) return;
-    setOverlay({ mode: "busy", title: "Đang tải lại…", detail: "Catalog + homepage" });
-    void Promise.all([fetchCatalog(), fetchHomepage()])
-      .then(([catalog, homepage]) => {
+    setOverlay({ mode: "busy", title: "Đang tải lại…", detail: "Catalog + homepage + SEO" });
+    void Promise.all([fetchCatalog(), fetchHomepage(), fetchSeo()])
+      .then(([catalog, homepage, nextSeo]) => {
         applyCatalog(catalogToSiteData(catalog));
         applyHome(homepage);
+        applySeo(nextSeo);
         setLoadError("");
         setOverlay({ mode: "ok", title: "Đã tải lại" });
         window.setTimeout(() => setOverlay(null), 1200);
       })
       .catch(() => {
-        const detail = "Không tải được catalog / homepage từ Worker.";
+        const detail = "Không tải được catalog / homepage / SEO từ Worker.";
         setLoadError(detail);
         setOverlay({ mode: "err", title: "Tải lại thất bại", detail });
       });
@@ -350,7 +394,7 @@ export function AdminApp() {
             </button>
             <div>
               <p className="admin-kicker text-uppercase text-secondary fw-bold mb-1">
-                {tab === "homepage" ? "Trang chủ" : "Catalog"}
+                {tab.startsWith("seo") ? "SEO" : tab === "homepage" ? "Trang chủ" : "Catalog"}
               </p>
               <h1 className="h4 mb-0">{TABS.find((item) => item.id === tab)?.label}</h1>
             </div>
@@ -360,8 +404,8 @@ export function AdminApp() {
 
         <main className="admin-main p-3 pb-5">
           <p className="text-secondary small">
-            GET / Lưu qua Worker. Homepage: copy + ảnh theo section (VI/EN/KR). Catalog: khóa / phòng / gói /
-            stories / chi nhánh. Public không fallback HTML.
+            GET / Lưu qua Worker. Homepage + Catalog + SEO (title, robots, sitemap). Meta public cập nhật khi
+            deploy Pages. `/admin/` luôn noindex.
           </p>
           {loadError ? <p className="text-danger small">{loadError}</p> : null}
 
@@ -408,6 +452,13 @@ export function AdminApp() {
               onChange={(branches) => setDraft({ ...draft, branches })}
             />
           ) : null}
+          {tab === "seo-pages" ? (
+            <SeoPagesEditor seo={seo} stories={draft.stories} onChange={setSeo} onBusy={setOverlay} />
+          ) : null}
+          {tab === "seo-settings" ? (
+            <SeoSettingsEditor seo={seo} onChange={setSeo} onBusy={setOverlay} />
+          ) : null}
+          {tab === "seo-sitemap" ? <SeoSitemapPanel seo={seo} stories={draft.stories} /> : null}
         </main>
 
         <div className="d-lg-none sticky-bottom border-top bg-body px-3 py-2 d-flex justify-content-end gap-2">

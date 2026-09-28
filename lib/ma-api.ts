@@ -1,5 +1,6 @@
 import type { Branch, BranchId, Course, Package } from "@/lib/discovery-data";
 import { parseHomepage, type Homepage } from "@/lib/homepage-data";
+import { parseSeo, type SeoDoc } from "@/lib/seo-data";
 import type { Story, StoryKind } from "@/lib/stories";
 
 export const MA_API_URL = (
@@ -144,4 +145,10 @@ export async function fetchHomepage(): Promise<Homepage> {
   const res = await fetch(`${MA_API_URL}/api/homepage`, { cache: "no-store" });
   if (!res.ok) throw new Error(`homepage_${res.status}`);
   return parseHomepage(await res.json());
+}
+
+export async function fetchSeo(): Promise<SeoDoc> {
+  const res = await fetch(`${MA_API_URL}/api/seo`, { cache: "no-store" });
+  if (!res.ok) throw new Error(`seo_${res.status}`);
+  return parseSeo(await res.json());
 }

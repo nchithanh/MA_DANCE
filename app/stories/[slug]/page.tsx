@@ -4,6 +4,8 @@ import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { StoryDetailClient } from "@/components/StoryDetailClient";
 import { fetchCatalog } from "@/lib/ma-api";
 import { mediaUrl } from "@/lib/media";
+import { routeMetadata } from "@/lib/route-seo";
+import { storySeoPath } from "@/lib/seo-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,11 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const catalog = await fetchCatalog();
   const story = catalog.stories.find((item) => item.slug === slug);
-  if (!story) return { title: "Stories — MA Dance Studio" };
-  return {
-    title: `${story.title} — MA Dance Studio`,
-    description: story.excerpt,
-  };
+  return routeMetadata(storySeoPath(slug), {
+    title: story ? `${story.title} — MA Dance Studio` : "Stories — MA Dance Studio",
+    description: story?.excerpt || "",
+  });
 }
 
 export default async function StoryDetailPage({ params }: Props) {

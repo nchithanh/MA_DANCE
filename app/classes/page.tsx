@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { ClassesPageClient } from "@/components/ClassesPageClient";
+import { routeMetadata } from "@/lib/route-seo";
 
-export const metadata: Metadata = {
-  title: "Khóa học — MA Dance Studio",
-  description:
-    "Catalog khóa MA Dance: Begin / Inter / Advance · 8 buổi/tháng · 3 chi nhánh.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return routeMetadata("/classes/");
+}
 
 export default function ClassesPage() {
   return (

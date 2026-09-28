@@ -5,4 +5,8 @@ out
 .env*
 .DS_Store
 *.tsbuildinfo
+public/sitemap.xml
+public/sitemap-pages.xml
+public/sitemap-stories.xml
+public/robots.txt
 

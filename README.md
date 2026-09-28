@@ -19,7 +19,9 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
 - Contact / booking CTAs (tạm) → [Google Form](https://forms.gle/LUyZiNv2F3Hnu499A) (`target="_blank"`). Catalog `/classes/` · `/packages/` · `/rooms/` vẫn xem trên site. Zalo / tel / social giữ nguyên. Không CRM.
 - Catalog public (`/classes/` `/packages/` `/rooms/` `/stories/` **và homepage** `#pricing` `#stories` `#branches`): `GET` Worker `ma-website` `/api/catalog` — **không** fallback seed TS / HTML cứng / `localStorage`. Worker down → khối đó báo lỗi / trống. Giá gói / thuê giờ: Liên hệ. `#impact` nhập trên Homepage CMS (số + nhãn, thêm/xóa tự do) — không lấy từ catalog.
-- Login admin: `admin` / `ma@2026` → Worker tạo session token (D1, 7 ngày). Sidebar **Trang chủ** (Homepage CMS VI/EN/KR) + **Catalog** (accordion + chip). Upload ảnh: `POST /api/media` → R2 `website/uploads/`, URL Worker ghi thẳng vào draft. Overlay khi đăng nhập / lưu / tải lại / upload. GET + Lưu qua API.
+- Login admin: `admin` / `ma@2026` → Worker tạo session token (D1, 7 ngày). Sidebar **Trang chủ** + **Catalog** + **SEO** (Trang / Cài đặt / Sitemap index). Upload ảnh: `POST /api/media` → R2. Overlay khi đăng nhập / lưu / tải lại / upload.
+- SEO: `GET/PUT /api/seo`. Sitemap index kiểu WP: `/sitemap.xml` → pages + stories. `robots.txt` Disallow `/admin/`. Meta từng URL bake lúc **build** Pages; lưu admin = Worker ngay.
+- GSC nộp: `https://nchithanh.github.io/MA_DANCE/sitemap.xml`
 - Homepage CMS: `GET /api/homepage` (public) · `PUT /api/homepage` (session). D1 `site_meta.key=homepage`. Worker down → section trống/lỗi, không fallback HTML. Nav / footer vẫn i18n runtime.
 - D1 `ma_website` + R2 `ma-website` + Worker `https://ma-website.nchithanh9999.workers.dev`. Override: `NEXT_PUBLIC_MA_API_URL`. User/pass mặc định `admin` / `ma@2026` (hoặc secret `ADMIN_USER` / `ADMIN_PASS`).
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.

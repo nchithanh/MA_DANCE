@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { StoriesPageClient } from "@/components/StoriesPageClient";
+import { routeMetadata } from "@/lib/route-seo";
 
-export const metadata: Metadata = {
-  title: "Stories — MA Dance Studio",
-  description:
-    "TikTok, YouTube và case studio MA Dance — cover night, class recap, The New Gene, không gian 3 chi nhánh.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return routeMetadata("/stories/");
+}
 
 export default function StoriesPage() {
   return (

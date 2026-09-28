@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { MarketingSubpage } from "@/components/MarketingSubpage";
 import { BookRoomPageClient } from "@/components/BookRoomPageClient";
+import { routeMetadata } from "@/lib/route-seo";
 
-export const metadata: Metadata = {
-  title: "Đặt phòng studio — MA Dance Studio",
-  description: "Đặt phòng tập MA Dance theo giờ. Form lead — xác nhận Zalo.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return routeMetadata("/book-room/");
+}
 
 export default function BookRoomPage() {
   return (
