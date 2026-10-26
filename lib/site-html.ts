@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 export function withBasePath(html: string): string {
-  const base = process.env.GITHUB_PAGES === "true" ? "/MA_DANCE" : "";
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || process.env.GITHUB_PAGES_BASE_PATH || "";
   if (!base) return html;
   return html.replace(
     /\b(src|href)="(?!https?:|\/\/|#|mailto:|tel:)([^"]+)"/g,

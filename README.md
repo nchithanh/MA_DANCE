@@ -16,12 +16,12 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - `#live`: news board — live now trái, 3 lịch live phải → TikTok `@madancestudio/live`.
 - `#stories` + `/stories/` · `/stories/[slug]/`: TikTok / YouTube / case (Cover night, Class recap, The New Gene, 3 CN). Không bịa metric.
 - Footer: Studio · Tham gia · Liên hệ (3 CN, Zalo, giờ T2–CN 09:00–22:00, YT/TT/FB).
-- Content photos: `public/media/` (local). Pages build prefixes asset paths with `/MA_DANCE`.
+- Content photos: `public/media/` (local). Custom domain serves from `/` (no `/MA_DANCE` prefix).
 - Contact / booking CTAs (tạm) → [Google Form](https://forms.gle/LUyZiNv2F3Hnu499A) (`target="_blank"`). Catalog `/classes/` · `/packages/` · `/rooms/` vẫn xem trên site. Zalo / tel / social giữ nguyên. Không CRM.
 - Catalog public (`/classes/` `/packages/` `/rooms/` `/stories/` **và homepage** `#pricing` `#stories` `#branches`): `GET` Worker `ma-website` `/api/catalog` — **không** fallback seed TS / HTML cứng / `localStorage`. Worker down → khối đó báo lỗi / trống. Giá gói / thuê giờ: Liên hệ. `#impact` nhập trên Homepage CMS (số + nhãn, thêm/xóa tự do) — không lấy từ catalog.
 - Login admin: `admin` / `ma@2026` → Worker tạo session token (D1, 7 ngày). UI Tailwind (dark, accent trắng) — không Bootstrap. Sidebar **Trang chủ** + **Catalog** + **SEO** (Trang / Cài đặt / Sitemap index); mobile = drawer. Upload ảnh: `POST /api/media` → R2. Overlay khi đăng nhập / lưu / tải lại / upload.
 - SEO: `GET/PUT /api/seo`. Sitemap index kiểu WP: `/sitemap.xml` → pages + stories. `robots.txt` Disallow `/admin/`. Meta từng URL bake lúc **build** Pages; lưu admin = Worker ngay.
-- GSC nộp: `https://nchithanh.github.io/MA_DANCE/sitemap.xml`
+- GSC nộp: `https://madancestudio.vn/sitemap.xml`
 - Homepage CMS: `GET /api/homepage` (public) · `PUT /api/homepage` (session). D1 `site_meta.key=homepage`. Worker down → section trống/lỗi, không fallback HTML. Nav / footer vẫn i18n runtime.
 - D1 `ma_website` + R2 `ma-website` + Worker `https://ma-website.nchithanh9999.workers.dev`. Override: `NEXT_PUBLIC_MA_API_URL`. User/pass mặc định `admin` / `ma@2026` (hoặc secret `ADMIN_USER` / `ADMIN_PASS`).
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
@@ -52,7 +52,7 @@ Open [http://localhost:3020](http://localhost:3020).
 
 ```bash
 npm run build                 # → out/
-GITHUB_PAGES=true npm run build  # basePath /MA_DANCE for GitHub Pages
+GITHUB_PAGES_BASE_PATH=/MA_DANCE npm run build  # chỉ khi publish project URL, không dùng với madancestudio.vn
 ```
 
 ## Worker API (D1)
@@ -71,7 +71,7 @@ Chi tiết route: `workers/ma-website/README.md`.
 
 - Repo: [nchithanh/MA_DANCE](https://github.com/nchithanh/MA_DANCE)
 - CI: `.github/workflows/deploy.yml` — push `main` → build + GitHub Pages
-- Live (sau khi bật Pages = GitHub Actions): https://nchithanh.github.io/MA_DANCE/
+- Live: https://madancestudio.vn/ (Pages + Cloudflare). Fallback project URL redirect về apex.
 - Settings → Pages → Source: **GitHub Actions**
 
 ## Stack

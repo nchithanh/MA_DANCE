@@ -1,11 +1,11 @@
-/** Internal route — respects GitHub Pages `/MA_DANCE`. */
+/** Internal route — prefixes NEXT_PUBLIC_BASE_PATH when set. */
 export function siteHref(path: string) {
   const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const clean = path.startsWith("/") ? path : `/${path}`;
   return `${base}${clean}`;
 }
 
-/** Public media URL — respects GitHub Pages `/MA_DANCE`. Worker/R2 URLs pass through. */
+/** Public media URL — prefixes NEXT_PUBLIC_BASE_PATH when set. Worker/R2 URLs pass through. */
 export function mediaUrl(file: string) {
   const raw = String(file || "").trim();
   if (!raw) return "";

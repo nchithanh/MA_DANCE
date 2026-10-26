@@ -1,9 +1,10 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 
-/** GitHub Pages project site: https://nchithanh.github.io/MA_DANCE/ */
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-const basePath = isGithubPages ? "/MA_DANCE" : "";
+/** Apex custom domain https://madancestudio.vn/ — no project prefix.
+ *  Opt-in old project URL: GITHUB_PAGES_BASE_PATH=/MA_DANCE
+ */
+const basePath = process.env.GITHUB_PAGES_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
   output: "export",

@@ -169,7 +169,7 @@ export function SeoSettingsEditor({
       <Field label="Description mặc định">
         <Textarea rows={3} value={site.defaultDescription} onChange={(e) => patchSite({ defaultDescription: e.target.value })} />
       </Field>
-      <Field label="Canonical origin (không slash cuối)" hint={<span className="text-ma-text-muted">Live Pages: https://nchithanh.github.io/MA_DANCE</span>}>
+      <Field label="Canonical origin (không slash cuối)" hint={<span className="text-ma-text-muted">Live: https://madancestudio.vn</span>}>
         <Input value={site.canonicalOrigin} onChange={(e) => patchSite({ canonicalOrigin: e.target.value })} />
       </Field>
       <ImageField label="OG mặc định" value={site.ogImage} onChange={(ogImage) => patchSite({ ogImage })} onBusy={onBusy} />

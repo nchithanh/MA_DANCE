@@ -1,5 +1,5 @@
 export const SEO_VERSION = 1 as const;
-export const DEFAULT_CANONICAL_ORIGIN = "https://nchithanh.github.io/MA_DANCE";
+export const DEFAULT_CANONICAL_ORIGIN = "https://madancestudio.vn";
 
 export const SEO_FIXED_PAGES = [
   { path: "/", label: "Trang chủ" },
