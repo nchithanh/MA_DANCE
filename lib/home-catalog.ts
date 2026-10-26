@@ -206,10 +206,6 @@ export function hydrateHomeFromCatalog(catalog: Catalog, options: HomeCatalogOpt
 
 export function showHomeCatalogError() {
   for (const name of ["packages", "stories", "branches"]) {
-    const el = slot(name);
-    if (!el) continue;
-    el.replaceChildren();
-    setBusy(el, false);
-    el.append(emptyNote("Không tải được catalog từ Worker."));
+    setBusy(slot(name), false);
   }
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { hydrateHomeFromCatalog, showHomeCatalogError } from "@/lib/home-catalog";
-import { hydrateHomepage, showHomepageError } from "@/lib/home-hydrate";
+import { hydrateHomeFromCatalog } from "@/lib/home-catalog";
+import { hydrateHomepage } from "@/lib/home-hydrate";
 import { pickI18n, type Homepage } from "@/lib/homepage-data";
 import { fetchCatalog, fetchHomepage, type Catalog } from "@/lib/ma-api";
 
@@ -38,12 +38,12 @@ export function MaDanceHome({ html }: Props) {
       try {
         homepage = await fetchHomepage();
       } catch {
-        if (!cancelled) showHomepageError();
+        // Messenger IAB / Worker fail: keep baked HTML seed, do not wipe slots.
       }
       try {
         catalog = await fetchCatalog();
       } catch {
-        if (!cancelled) showHomeCatalogError();
+        // Same — catalog slots stay on seed markup.
       }
       if (cancelled) return;
 

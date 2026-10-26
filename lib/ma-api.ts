@@ -116,8 +116,9 @@ function mapStory(raw: Record<string, unknown>): Story {
 
 function apiFetchInit(): RequestInit {
   // Static export cannot prerender a page that used cache: "no-store".
+  // Client: default GET (no Cache-Control) so Messenger IAB skips CORS preflight.
   if (typeof window === "undefined") return { cache: "force-cache" };
-  return { cache: "no-store" };
+  return {};
 }
 
 export async function fetchCatalog(): Promise<Catalog> {

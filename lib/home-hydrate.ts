@@ -884,10 +884,6 @@ export function showHomepageError() {
     "contact",
   ];
   for (const name of names) {
-    const el = slot(name);
-    if (!el) continue;
-    el.replaceChildren();
-    setBusy(el, false);
-    el.append(emptyNote("Không tải được homepage từ Worker."));
+    setBusy(slot(name), false);
   }
 }

@@ -18,11 +18,11 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 - Footer: Studio · Tham gia · Liên hệ (3 CN, Zalo, giờ T2–CN 09:00–22:00, YT/TT/FB).
 - Content photos: `public/media/` (local). Custom domain serves from `/` (no `/MA_DANCE` prefix).
 - Contact / booking CTAs (tạm) → [Google Form](https://forms.gle/LUyZiNv2F3Hnu499A) (`target="_blank"`). Catalog `/classes/` · `/packages/` · `/rooms/` vẫn xem trên site. Zalo / tel / social giữ nguyên. Không CRM.
-- Catalog public (`/classes/` `/packages/` `/rooms/` `/stories/` **và homepage** `#pricing` `#stories` `#branches`): `GET` Worker `ma-website` `/api/catalog` — **không** fallback seed TS / HTML cứng / `localStorage`. Worker down → khối đó báo lỗi / trống. Giá gói / thuê giờ: Liên hệ. `#impact` nhập trên Homepage CMS (số + nhãn, thêm/xóa tự do) — không lấy từ catalog.
+- Catalog public (`/classes/` `/packages/` `/rooms/` `/stories/` **và homepage** `#pricing` `#stories` `#branches`): `GET` Worker `ma-website` `/api/catalog` — không fallback seed TS / `localStorage`. Worker / Messenger IAB fail trên homepage → **giữ HTML bake**, không xóa slot thành thông báo lỗi. Giá gói / thuê giờ: Liên hệ. `#impact` nhập trên Homepage CMS (số + nhãn, thêm/xóa tự do) — không lấy từ catalog.
 - Login admin: `admin` / `ma@2026` → Worker tạo session token (D1, 7 ngày). UI Tailwind (dark, accent trắng) — không Bootstrap. Sidebar **Trang chủ** + **Catalog** + **SEO** (Trang / Cài đặt / Sitemap index); mobile = drawer. Upload ảnh: `POST /api/media` → R2. Overlay khi đăng nhập / lưu / tải lại / upload.
 - SEO: `GET/PUT /api/seo`. Sitemap index kiểu WP: `/sitemap.xml` → pages + stories. `robots.txt` Disallow `/admin/`. Meta từng URL bake lúc **build** Pages; lưu admin = Worker ngay.
 - GSC nộp: `https://madancestudio.vn/sitemap.xml`
-- Homepage CMS: `GET /api/homepage` (public) · `PUT /api/homepage` (session). D1 `site_meta.key=homepage`. Worker down → section trống/lỗi, không fallback HTML. Nav / footer vẫn i18n runtime.
+- Homepage CMS: `GET /api/homepage` (public) · `PUT /api/homepage` (session). D1 `site_meta.key=homepage`. Worker fail trên trang chủ → giữ HTML seed. Nav / footer vẫn i18n runtime. Fetch public không `cache: "no-store"` (tránh preflight Messenger).
 - D1 `ma_website` + R2 `ma-website` + Worker `https://ma-website.nchithanh9999.workers.dev`. Override: `NEXT_PUBLIC_MA_API_URL`. User/pass mặc định `admin` / `ma@2026` (hoặc secret `ADMIN_USER` / `ADMIN_PASS`).
 - Branches: Q10 `436A/101 Đường 3/2` · Phú Nhuận `522/1 Phan Xích Long` · Q3 `02 Hồ Xuân Hương`.
 
