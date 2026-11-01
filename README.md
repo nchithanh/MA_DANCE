@@ -6,6 +6,7 @@ Frontend marketing homepage under `products/MA/marketingSite/`.
 
 - Rebuilt from static template `products/MA/ma-dance/` (HTML / CSS / JS).
 - Branding & copy = **MA Dance Studio** (K-Pop / street dance, HCMC).
+- Favicon / Add to Home Screen = logo MA (`public/logo.png` → `apple-touch-icon.png`, `favicon.ico`, `icon-192.png`, `icon-512.png`; `app/manifest.ts`). Tái tạo: `node scripts/generate-icons.mjs`.
 - VI / EN / KR via in-page language switcher (`localStorage` key `ma-lang`).
 - Official partner: **The New Gene Show** — fixed **top bar** + splash + `#partner` — copy: *MA Dance Studio – đối tác vũ đạo & luyện tập chính thức của The New Gene 2026* → https://thenewgene.vn/
 - Trust / milestones: `#milestones` — dark editorial **bento** with photo tiles.
@@ -90,6 +91,6 @@ Keep `../ma-dance/` as the static design reference. Port changes from there into
 | `index.html` | `content/body.html` → `components/MaDanceHome.tsx` |
 | `styles.css` | `app/ma-dance.css` |
 | `script.js` | `lib/ma-dance-runtime.js` (`initMaDance`) |
-| `logo.png` | `public/logo.png` (MA monogram; “DANCE STUDIO” là text CSS) |
+| `logo.png` | `public/logo.png` (MA monogram; “DANCE STUDIO” là text CSS). Favicon / Add to Home Screen dùng cùng mark (`apple-touch-icon.png`, `favicon.ico`, `icon-192.png`, `icon-512.png`) |
 | Content photos | `public/media/*.jpg` (local SoT — no `api.minstudio.vn` CDN) |
 | Studio gallery | `public/media/studio-01…08.jpg` — real room photos for `#gallery` |
